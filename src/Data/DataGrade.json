@@ -1,0 +1,302 @@
+[
+    {
+        "ci": 1,
+        "first_name": "Luis",
+        "last_name": "Hof",
+        "as": 3.47,
+        "Tcp1": 63.5226,
+        "Tcp2": 2.8049,
+        "FinalExam": 15.9492,
+        "FinalNote": 86.9277
+    },
+    {
+        "ci": 2,
+        "first_name": "Shaine",
+        "last_name": "Belden",
+        "as": 0.68,
+        "Tcp1": 7.7054,
+        "Tcp2": 37.7189,
+        "FinalExam": 36.5675,
+        "FinalNote": 71.1436
+    },
+    {
+        "ci": 3,
+        "first_name": "Becky",
+        "last_name": "O'Mannion",
+        "as": 7.19,
+        "Tcp1": 1.1315,
+        "Tcp2": 58.6113,
+        "FinalExam": 83.2465,
+        "FinalNote": 34.9001
+    },
+    {
+        "ci": 4,
+        "first_name": "Consuela",
+        "last_name": "Longfut",
+        "as": 3.8,
+        "Tcp1": 96.0895,
+        "Tcp2": 91.6194,
+        "FinalExam": 8.7988,
+        "FinalNote": 33.354
+    },
+    {
+        "ci": 5,
+        "first_name": "Garner",
+        "last_name": "Silveston",
+        "as": 12.35,
+        "Tcp1": 84.8535,
+        "Tcp2": 18.1136,
+        "FinalExam": 62.1042,
+        "FinalNote": 63.115
+    },
+    {
+        "ci": 6,
+        "first_name": "Georgeanna",
+        "last_name": "Taffley",
+        "as": 0.7,
+        "Tcp1": 8.6672,
+        "Tcp2": 63.1381,
+        "FinalExam": 79.7402,
+        "FinalNote": 32.5805
+    },
+    {
+        "ci": 7,
+        "first_name": "Bronny",
+        "last_name": "Hardwidge",
+        "as": 12.28,
+        "Tcp1": 43.6949,
+        "Tcp2": 55.026,
+        "FinalExam": 67.3235,
+        "FinalNote": 3.358
+    },
+    {
+        "ci": 8,
+        "first_name": "Joelle",
+        "last_name": "Winscomb",
+        "as": 1.58,
+        "Tcp1": 24.8996,
+        "Tcp2": 62.3732,
+        "FinalExam": 35.192,
+        "FinalNote": 87.8775
+    },
+    {
+        "ci": 9,
+        "first_name": "Iseabal",
+        "last_name": "Cruise",
+        "as": 14.05,
+        "Tcp1": 56.4366,
+        "Tcp2": 78.2626,
+        "FinalExam": 73.3344,
+        "FinalNote": 78.912
+    },
+    {
+        "ci": 10,
+        "first_name": "Willard",
+        "last_name": "Pillinger",
+        "as": 4.48,
+        "Tcp1": 78.5826,
+        "Tcp2": 37.3996,
+        "FinalExam": 34.0287,
+        "FinalNote": 27.6442
+    },
+    {
+        "ci": 11,
+        "first_name": "Benedicta",
+        "last_name": "Dowdam",
+        "as": 13.72,
+        "Tcp1": 93.572,
+        "Tcp2": 91.6518,
+        "FinalExam": 59.2794,
+        "FinalNote": 25.0444
+    },
+    {
+        "ci": 12,
+        "first_name": "Almeria",
+        "last_name": "Van Der Walt",
+        "as": 2.49,
+        "Tcp1": 74.1214,
+        "Tcp2": 47.4452,
+        "FinalExam": 66.1763,
+        "FinalNote": 87.586
+    },
+    {
+        "ci": 13,
+        "first_name": "Fairfax",
+        "last_name": "Lody",
+        "as": 2.28,
+        "Tcp1": 27.4979,
+        "Tcp2": 18.6523,
+        "FinalExam": 73.0568,
+        "FinalNote": 36.6105
+    },
+    {
+        "ci": 14,
+        "first_name": "Angel",
+        "last_name": "Dagnan",
+        "as": 8.79,
+        "Tcp1": 38.2221,
+        "Tcp2": 63.0373,
+        "FinalExam": 99.6142,
+        "FinalNote": 77.6763
+    },
+    {
+        "ci": 15,
+        "first_name": "Finley",
+        "last_name": "Iacopini",
+        "as": 5.65,
+        "Tcp1": 12.3901,
+        "Tcp2": 31.9364,
+        "FinalExam": 52.2138,
+        "FinalNote": 48.9853
+    },
+    {
+        "ci": 16,
+        "first_name": "Filberte",
+        "last_name": "Corkhill",
+        "as": 0.69,
+        "Tcp1": 8.0566,
+        "Tcp2": 97.8783,
+        "FinalExam": 88.7104,
+        "FinalNote": 69.2791
+    },
+    {
+        "ci": 17,
+        "first_name": "Packston",
+        "last_name": "Gowry",
+        "as": 8.37,
+        "Tcp1": 96.8444,
+        "Tcp2": 86.3014,
+        "FinalExam": 97.8414,
+        "FinalNote": 9.2762
+    },
+    {
+        "ci": 18,
+        "first_name": "Meg",
+        "last_name": "McCurdy",
+        "as": 3.6,
+        "Tcp1": 70.9809,
+        "Tcp2": 21.1863,
+        "FinalExam": 67.5841,
+        "FinalNote": 84.8042
+    },
+    {
+        "ci": 19,
+        "first_name": "Renault",
+        "last_name": "Fairley",
+        "as": 14.19,
+        "Tcp1": 21.9614,
+        "Tcp2": 38.5525,
+        "FinalExam": 75.9089,
+        "FinalNote": 68.2561
+    },
+    {
+        "ci": 20,
+        "first_name": "Adelheid",
+        "last_name": "Josebury",
+        "as": 11.9,
+        "Tcp1": 58.9656,
+        "Tcp2": 82.0419,
+        "FinalExam": 46.1203,
+        "FinalNote": 16.3315
+    },
+    {
+        "ci": 21,
+        "first_name": "Cathyleen",
+        "last_name": "Drewett",
+        "as": 14.84,
+        "Tcp1": 67.7988,
+        "Tcp2": 1.4875,
+        "FinalExam": 76.0368,
+        "FinalNote": 65.6709
+    },
+    {
+        "ci": 22,
+        "first_name": "Ertha",
+        "last_name": "Sapey",
+        "as": 10.02,
+        "Tcp1": 67.8362,
+        "Tcp2": 67.7088,
+        "FinalExam": 89.5741,
+        "FinalNote": 45.2226
+    },
+    {
+        "ci": 23,
+        "first_name": "Ganny",
+        "last_name": "O'Kinedy",
+        "as": 9.25,
+        "Tcp1": 85.5953,
+        "Tcp2": 65.9908,
+        "FinalExam": 88.7949,
+        "FinalNote": 94.7717
+    },
+    {
+        "ci": 24,
+        "first_name": "Walker",
+        "last_name": "Moncreif",
+        "as": 8.7,
+        "Tcp1": 95.6554,
+        "Tcp2": 69.8917,
+        "FinalExam": 9.3863,
+        "FinalNote": 98.1709
+    },
+    {
+        "ci": 25,
+        "first_name": "Webb",
+        "last_name": "Govan",
+        "as": 5.19,
+        "Tcp1": 82.5591,
+        "Tcp2": 5.4286,
+        "FinalExam": 62.4834,
+        "FinalNote": 3.1805
+    },
+    {
+        "ci": 26,
+        "first_name": "Javier",
+        "last_name": "Blackburne",
+        "as": 12.28,
+        "Tcp1": 29.7333,
+        "Tcp2": 98.0632,
+        "FinalExam": 22.6526,
+        "FinalNote": 7.3714
+    },
+    {
+        "ci": 27,
+        "first_name": "Adelind",
+        "last_name": "Auletta",
+        "as": 14.34,
+        "Tcp1": 95.0183,
+        "Tcp2": 72.8706,
+        "FinalExam": 22.5702,
+        "FinalNote": 55.3039
+    },
+    {
+        "ci": 28,
+        "first_name": "Kaela",
+        "last_name": "Betser",
+        "as": 4.17,
+        "Tcp1": 78.0172,
+        "Tcp2": 24.1265,
+        "FinalExam": 48.3285,
+        "FinalNote": 34.47
+    },
+    {
+        "ci": 29,
+        "first_name": "Channa",
+        "last_name": "Patty",
+        "as": 4.72,
+        "Tcp1": 84.803,
+        "Tcp2": 23.5021,
+        "FinalExam": 62.3946,
+        "FinalNote": 40.062
+    },
+    {
+        "ci": 30,
+        "first_name": "Shela",
+        "last_name": "Simoncini",
+        "as": 13.48,
+        "Tcp1": 6.1344,
+        "Tcp2": 40.3049,
+        "FinalExam": 97.9503,
+        "FinalNote": 45.3994
+    }
+]

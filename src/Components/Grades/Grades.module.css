@@ -1,0 +1,201 @@
+.sts{
+    text-align: center;
+    padding: 5px;
+    height: 100%;
+    background-image: url("../../Imgs/blue.jpg");
+    box-shadow: 0 0 10px rgb(0, 0, 0);
+    border-radius: 10px;  
+}
+.title{
+    margin-left: 250px;
+    color: #0d569e;
+    padding-top:12px;
+    border: none;
+    outline: none; 
+    border-radius: 10px;
+}
+.subject{
+    font-size: 18px;
+    color: #0b3e72;;
+    position: absolute;
+    left: 225px;
+}
+.select{
+    font-size: 16px;
+    text-align: center;
+    margin-top: 15px;
+    margin-left: 5px;
+    border: none;
+    border-bottom: 1px solid black;
+    background: #fff;
+    border-radius: 5px;
+    width: 120px;
+   
+    &:hover{
+       
+        box-shadow: 0 0px 10px #03203dbb;
+    }
+}
+.btnpdf{
+    position: absolute;
+    top: 35px;
+    right: 40px;
+    border: none;
+    font-family: "Roboto", sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    background: #1e90ff;
+    width: 60px;
+    height: 30px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    transition-property: box-shadow, transform;
+}
+.btnpdf:hover, .btnpdf:focus, .btnpdf:active{
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+
+/* Acciones Tabla */
+
+.icon{
+    translate: 0 -3px;
+    transition: 2s;
+}
+ .actionT:hover{
+    box-shadow: 0 0 20px rgba(8, 27, 136, 0.897);
+    border-radius:30px ;
+    .icon{
+        transform: rotateZ(180deg);
+    }
+    .option{       
+        translate: -10px -42px;      
+        visibility: visible;
+        transition: 0.8s;
+        color: black;
+        background-color: transparent;              
+    .mod, .view, .bolet{
+        color: white;
+        background: #1e90ff;
+        transition: 0.6s;             
+    }            
+    .mod:hover, .mod:focus, .mod:active{
+        color: rgb(37, 231, 173);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+       -webkit-transform: scale(1.1);
+       transform: scale(1.1);
+    }
+    } 
+ }
+ .actionT:active{
+    background: #0d569e;
+ }
+ .actionT{
+    translate: 5px;
+    margin-right: 90px;
+    margin: none;
+    padding: none;
+    text-align: center;
+    width: 40px;
+    height: 30px;
+  }
+  .action{
+    border: none;
+    background-color: transparent; 
+  }
+  
+.option{
+    box-shadow: 0 0 5px rgba(8, 27, 136, 0);
+    /* clip-path: polygon(15% 0%, 100% 0%, 100% 75%, 100% 100%, 15% 100%, 15% 75%, 0% 50%, 15% 25%); */
+    translate: 0px -42px;           
+    color: rgba(0, 0, 0, 0);  
+    transition: 0.6s;
+    height: 200%;
+    width: 200px;          
+}
+.option .mod{ 
+    margin-left:2px; 
+    border: none;
+    font-family: "Roboto", sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    background: #1e8fff00;
+    width: 90px;
+    height: 35px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0);
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0);
+    -webkit-transition-duration: 0.6s;
+    transition-duration: 0.6s;
+    transition-property: box-shadow, transform;
+}
+
+
+/* Modal */
+
+
+.form{
+    text-align: left;
+    margin-top: 15px;
+    min-height: 120px;   
+input{ 
+    font-size: 17px;   
+    max-width: 50px;   
+    margin-right: 30px;
+    &:hover{       
+        box-shadow: 0 0 5px #0d569eaf;
+    }
+}
+label{
+    font-size: 17px;
+}
+}
+.as{
+    margin-left: 77px;
+}
+.sub{
+    margin-left: 50px;
+}
+.save{ 
+    border: none;
+    font-family: "Roboto", sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    background: #1e90ff;
+    width: 90px;
+    height: 30px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    transition-property: box-shadow;
+}
+.save:hover, .save:focus, .save:active{
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    color: rgb(45, 221, 45);
+}
+.start{
+    margin-bottom: 10px;
+    border-bottom: 1px solid #12749296;
+}
+.end{
+    margin-top: 10px;
+}

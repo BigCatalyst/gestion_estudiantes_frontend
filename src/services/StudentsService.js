@@ -8,6 +8,24 @@ let rows = [
     regNumber: "asd",
     sex: "hombre",
   },
+  {
+    ci: "8932763276",
+    address: "direccion",
+    grade: 8,
+    last_name: "apellido",
+    name: "nombre",
+    regNumber: "asd",
+    sex: "hombre",
+  },
+  {
+    ci: "8932763223",
+    address: "direccion",
+    grade: 9,
+    last_name: "apellido",
+    name: "nombre",
+    regNumber: "asd",
+    sex: "hombre",
+  },
 ];
 
 export const getAll = async () => rows;

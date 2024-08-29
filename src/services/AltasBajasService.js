@@ -5,7 +5,7 @@ let rows = [
     municipality: "Municipio",
     province: "Provincia",
     school: "Escuela",
-    ci: "8934764587",
+    ci: "8932763289",
   },
   {
     baja: false,
@@ -13,7 +13,7 @@ let rows = [
     municipality: "Municipio1",
     province: "Provincia1",
     school: "Escuela1",
-    ci: "8756984578",
+    ci: "8932763276",
   },
 ];
 

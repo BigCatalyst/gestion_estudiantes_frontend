@@ -13,7 +13,7 @@ import {
   TextField,
 } from "@mui/material";
 
-import { add } from "../../services/AltasBajasService.js";
+import { update } from "../../services/AltasBajasService.js";
 import { getAll } from "../../services/StudentsService.js";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -40,7 +40,8 @@ const UpdateAltaBajas = ({ setKeyDataGrid, handleCloseUpdM, dataEdit }) => {
       });
       setTimeout(() => {
         setStudents(res);
-        setCI(res[0]);
+        console.log(dataEdit.ci);
+        setCI(dataEdit.ci);
       }, 1000);
     };
 
@@ -72,7 +73,8 @@ const UpdateAltaBajas = ({ setKeyDataGrid, handleCloseUpdM, dataEdit }) => {
     //llamada a la api ok
     formData.date = fecha.toDate();
     formData.ci = ci;
-    const res = add(formData);
+    console.log(formData);
+    const res = update(formData);
     if (res) {
       setKeyDataGrid(Date.now());
       handleCloseUpdM();
@@ -84,8 +86,10 @@ const UpdateAltaBajas = ({ setKeyDataGrid, handleCloseUpdM, dataEdit }) => {
       <Container>
         <form onSubmit={handdleSubmit}>
           <Autocomplete
+            disabled
             disablePortal
             options={students ? students : []}
+            value={formData.ci}
             onChange={(event, newValue) => {
               setCI(newValue);
             }}

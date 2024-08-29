@@ -1,18 +1,21 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import Page from "../../components/page/Page";
-import { getAll } from "../../services/SubjectsService";
+import { getAll } from "../../services/NotesServices";
+import { getAll as getAllStudents } from "../../services/StudentsService";
 import { Box, Button, IconButton } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { Delete, Edit } from "@mui/icons-material";
 import ModalMUI from "../../components/mui/modal/Modal";
-import AddSubjec from "./AddSubjec";
-import UpdateSubject from "./UpdateSubject";
+import AddNote from "./AddNote";
+import UpdateNote from "./UpdateNote";
 import { BsPersonFillAdd } from "react-icons/bs";
-import DeleteSubject from "./DeleteSubject";
+import DeleteNote from "./DeleteNote";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { dataGridStyles } from "../../components/mui/datagrid/DataGridStyle";
 
-const Subjects = () => {
+const Notes = ({ grade }) => {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
   const [keyDataGrid, setKeyDataGrid] = useState(Date.now());
@@ -45,7 +48,38 @@ const Subjects = () => {
     //simulando el tiempo de respuesta de la api
     const getData = async () => {
       setLoading(true);
-      const res = await getAll();
+      let count = 0;
+      let res;
+      //   const res = (await getAll()).map((item) => {
+      //     count++;
+      //     return { ...item, id: count };
+      //   });
+      const notes = await getAll();
+      if (notes) {
+        const students = await getAllStudents();
+        if (students) {
+          res = notes.map((item) => {
+            count++;
+            const ci = item.ci;
+            const student = students.find(
+              (stud) => stud.ci === ci && stud.grade === grade
+            );
+
+            let note = { id: count };
+
+            if (student) {
+              console.log(student);
+              return { ...note };
+            }
+            //return { ...note };
+            // if (student) {
+            //   return { ...item, id: count };
+            // }
+
+            //return { ...item, id: count };
+          });
+        }
+      }
       setTimeout(() => {
         setData(res);
         setLoading(false);
@@ -81,26 +115,40 @@ const Subjects = () => {
   const columns = [
     { field: "id", headerName: "ID", width: 150 },
     {
-      field: "grade",
-      headerName: "Grade",
+      field: "ci",
+      headerName: "CI",
       width: 150,
     },
     {
-      field: "name",
-      headerName: "Nombre",
+      field: "acs",
+      headerName: "Acs",
+      width: 150,
+    },
+    {
+      field: "tcp1",
+      headerName: "TCP 1",
       width: 150,
     },
     {
       field: "tcp2",
-      headerName: "Tcp 2",
+      headerName: "TCP 2",
       width: 150,
     },
-
+    {
+      field: "finalExam",
+      headerName: "Examen Final",
+      width: 150,
+    },
+    {
+      field: "finalNote",
+      headerName: "Nota Final",
+      width: 150,
+    },
     { ...actionsCol },
   ];
 
   return (
-    <Page title="Asignatura">
+    <Page title="Altas/Bajas">
       <Box>
         <Grid container spacing={3} sx={{ mt: 1 }}>
           <Grid
@@ -129,23 +177,23 @@ const Subjects = () => {
               Agregar
             </Button>
             <ModalMUI open={openAddM} handleClose={handleCloseAddM}>
-              <AddSubjec
+              <AddNote
                 setKeyDataGrid={setKeyDataGrid}
                 handleCloseAddM={handleCloseAddM}
               />
             </ModalMUI>
             <ModalMUI open={openUpdM} handleClose={handleCloseUpdM}>
               <h3 style={{ marginBottom: "15px" }}>
-                Update Id:{dataEdit && dataEdit.id}
+                Update Id:{dataEdit && dataEdit.ci}
               </h3>
-              <UpdateSubject
+              <UpdateNote
                 setKeyDataGrid={setKeyDataGrid}
                 handleCloseUpdM={handleCloseUpdM}
                 dataEdit={dataEdit}
               />
             </ModalMUI>
             <ModalMUI open={openDelM} handleClose={handleCloseDelM}>
-              <DeleteSubject
+              <DeleteNote
                 setKeyDataGrid={setKeyDataGrid}
                 handleCloseDelM={handleCloseDelM}
                 dataDel={dataDel}
@@ -159,6 +207,7 @@ const Subjects = () => {
               columns={columns}
               columnVisibilityModel={{
                 id: false,
+                regNumber: false,
               }}
               initialState={{
                 dataSet: "Commodity",
@@ -188,4 +237,4 @@ const Subjects = () => {
   );
 };
 
-export default Subjects;
+export default Notes;

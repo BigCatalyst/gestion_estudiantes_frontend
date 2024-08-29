@@ -53,7 +53,7 @@ const AddUser = ({ setKeyDataGrid, handleCloseAddM }) => {
     }
   };
   return (
-    <div style={{ maxHeight: 500, overflowY: "auto", padding: "3px" }}>
+    <div style={{ maxHeight: 500, overflowY: "auto", paddingTop: "7px" }}>
       <Container>
         <form onSubmit={handdleSubmit}>
           <TextField

@@ -8,9 +8,11 @@ const useFormValidator = (initialState) => {
   });
   const handdleChangeForm = (event) => {
     const { name, value, checked } = event.target;
-    if (value !== "on" && value !== "off")
+
+    if (value !== "on" && value !== "off") {
+      console.log(name, value, checked);
       setFormData({ ...formData, [name]: value });
-    else {
+    } else {
       setFormData({ ...formData, [name]: checked });
     }
     if (value.length === 0)

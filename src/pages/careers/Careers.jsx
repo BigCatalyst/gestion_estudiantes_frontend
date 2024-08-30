@@ -123,23 +123,32 @@ const Careers = () => {
             >
               Agregar
             </Button>
-            <ModalMUI open={openAddM} handleClose={handleCloseAddM}>
+            <ModalMUI
+              open={openAddM}
+              handleClose={handleCloseAddM}
+              title="Adicionar Carrera"
+            >
               <AddCareers
                 setKeyDataGrid={setKeyDataGrid}
                 handleCloseAddM={handleCloseAddM}
               />
             </ModalMUI>
-            <ModalMUI open={openUpdM} handleClose={handleCloseUpdM}>
-              <h3 style={{ marginBottom: "15px" }}>
-                Update Id:{dataEdit && dataEdit.id}
-              </h3>
+            <ModalMUI
+              open={openUpdM}
+              handleClose={handleCloseUpdM}
+              title="Actualizar Carrera"
+            >
               <UpdateCareers
                 setKeyDataGrid={setKeyDataGrid}
                 handleCloseUpdM={handleCloseUpdM}
                 dataEdit={dataEdit}
               />
             </ModalMUI>
-            <ModalMUI open={openDelM} handleClose={handleCloseDelM}>
+            <ModalMUI
+              open={openDelM}
+              handleClose={handleCloseDelM}
+              title="Eliminar Carrera"
+            >
               <DeleteCareers
                 setKeyDataGrid={setKeyDataGrid}
                 handleCloseDelM={handleCloseDelM}

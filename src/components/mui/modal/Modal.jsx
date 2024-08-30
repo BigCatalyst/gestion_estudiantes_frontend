@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
-import { Box, Modal } from "@mui/material";
+import { Box, Divider, Modal } from "@mui/material";
 
-const ModalMUI = ({ open, handleClose, children }) => {
+const ModalMUI = ({ open, handleClose, title, children }) => {
   const style = {
     position: "absolute",
     top: "50%",
@@ -21,6 +21,25 @@ const ModalMUI = ({ open, handleClose, children }) => {
       aria-describedby="modal-modal-description"
     >
       <Box sx={style}>
+        {title && (
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "column",
+              marginBottom: "21px",
+            }}
+          >
+            <h3
+              style={{
+                marginBottom: "5px",
+              }}
+            >
+              {title}
+            </h3>
+            <Divider sx={{ width: "80%" }} />
+          </div>
+        )}
         <div>{children}</div>
       </Box>
     </Modal>

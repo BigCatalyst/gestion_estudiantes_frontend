@@ -17,7 +17,6 @@ const DeleteStudents = ({ setKeyDataGrid, handleCloseDelM, dataDel }) => {
     <div style={{ maxHeight: 300 }}>
       <Container>
         <Grid display="flex" gap={2} flexDirection="column">
-          <h3>Confirmación</h3>
           <p>¿Está seguro que desea eliminar esta fila?</p>
           <Grid display="flex" gap={2} justifyContent="right" mt={2}>
             <Button

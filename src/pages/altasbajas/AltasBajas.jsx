@@ -146,23 +146,32 @@ const AltasBajas = () => {
             >
               Agregar
             </Button>
-            <ModalMUI open={openAddM} handleClose={handleCloseAddM}>
+            <ModalMUI
+              open={openAddM}
+              handleClose={handleCloseAddM}
+              title="Adicionar Alta/Baja"
+            >
               <AddAltasBajas
                 setKeyDataGrid={setKeyDataGrid}
                 handleCloseAddM={handleCloseAddM}
               />
             </ModalMUI>
-            <ModalMUI open={openUpdM} handleClose={handleCloseUpdM}>
-              <h3 style={{ marginBottom: "15px" }}>
-                Update Id:{dataEdit && dataEdit.ci}
-              </h3>
+            <ModalMUI
+              open={openUpdM}
+              handleClose={handleCloseUpdM}
+              title="Actualizar Alta/Baja"
+            >
               <UpdateAltasBajas
                 setKeyDataGrid={setKeyDataGrid}
                 handleCloseUpdM={handleCloseUpdM}
                 dataEdit={dataEdit}
               />
             </ModalMUI>
-            <ModalMUI open={openDelM} handleClose={handleCloseDelM}>
+            <ModalMUI
+              open={openDelM}
+              handleClose={handleCloseDelM}
+              title="Eliminar Alta/Baja"
+            >
               <DeleteAltasBajas
                 setKeyDataGrid={setKeyDataGrid}
                 handleCloseDelM={handleCloseDelM}

@@ -151,23 +151,32 @@ const Students = () => {
             >
               Agregar
             </Button>
-            <ModalMUI open={openAddM} handleClose={handleCloseAddM}>
+            <ModalMUI
+              open={openAddM}
+              handleClose={handleCloseAddM}
+              title="Adicionar Estudiante"
+            >
               <AddStudents
                 setKeyDataGrid={setKeyDataGrid}
                 handleCloseAddM={handleCloseAddM}
               />
             </ModalMUI>
-            <ModalMUI open={openUpdM} handleClose={handleCloseUpdM}>
-              <h3 style={{ marginBottom: "15px" }}>
-                Update Id:{dataEdit && dataEdit.id}
-              </h3>
+            <ModalMUI
+              open={openUpdM}
+              handleClose={handleCloseUpdM}
+              title="Actualizar Estudiante"
+            >
               <UpdateStudents
                 setKeyDataGrid={setKeyDataGrid}
                 handleCloseUpdM={handleCloseUpdM}
                 dataEdit={dataEdit}
               />
             </ModalMUI>
-            <ModalMUI open={openDelM} handleClose={handleCloseDelM}>
+            <ModalMUI
+              open={openDelM}
+              handleClose={handleCloseDelM}
+              title="Eliminar Estudiante"
+            >
               <DeleteStudents
                 setKeyDataGrid={setKeyDataGrid}
                 handleCloseDelM={handleCloseDelM}

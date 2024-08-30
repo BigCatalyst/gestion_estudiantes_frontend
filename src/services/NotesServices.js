@@ -1,56 +1,128 @@
 let rows = [
   {
-    ci: "8932763289",
-    
-    subject: "1",
-    acs: 1.0,
-    tcp1: 7,
-    tcp2: 8,
-    finalExam: 2,
-    finalNote: 2,
+    apellidos: "Cardew",
+    grado: "7",
+    asignatura: "Física",
+    as: "null",
+    id_asignatura: "2",
+    ci: "456789123",
+    tcp1: "null",
+    tcp2: "null",
+    exmane_final: "null",
+    nombre: "Wynn",
+    nota_final: "null",
   },
   {
-    ci: "8932763276",
-    subject: "2",
-    acs: 1.0,
-    tcp1: 7,
-    tcp2: 8,
-    finalExam: 2,
-    finalNote: 2,
+    apellidos: "Cardew",
+    grado: "7",
+    asignatura: "Química",
+    as: "null",
+    id_asignatura: "3",
+    ci: "456789123",
+    tcp1: "null",
+    tcp2: "null",
+    exmane_final: "null",
+    nombre: "Wynn",
+    nota_final: "null",
   },
   {
-    ci: "8932763223",
-    subject: "3",
-    acs: 1.0,
-    tcp1: 7,
-    tcp2: 8,
-    finalExam: 2,
-    finalNote: 2,
+    apellidos: "Cardew",
+    grado: "7",
+    asignatura: "Historia",
+    as: "null",
+    id_asignatura: "5",
+    ci: "456789123",
+    tcp1: "null",
+    tcp2: "null",
+    exmane_final: "null",
+    nombre: "Wynn",
+    nota_final: "null",
+  },
+  {
+    apellidos: "Cardew",
+    grado: "8",
+    asignatura: "Física",
+    as: "null",
+    id_asignatura: "2",
+    ci: "456789123",
+    tcp1: "null",
+    tcp2: "null",
+    exmane_final: "null",
+    nombre: "Wynn",
+    nota_final: "null",
+  },
+  {
+    apellidos: "Cardew",
+    grado: "8",
+    asignatura: "Química",
+    as: "null",
+    id_asignatura: "3",
+    ci: "456789123",
+    tcp1: "null",
+    tcp2: "null",
+    exmane_final: "null",
+    nombre: "Wynn",
+    nota_final: "null",
+  },
+  {
+    apellidos: "Cardew",
+    grado: "8",
+    asignatura: "Historia",
+    as: "null",
+    id_asignatura: "5",
+    ci: "456789123",
+    tcp1: "null",
+    tcp2: "null",
+    exmane_final: "null",
+    nombre: "Wynn",
+    nota_final: "null",
+  },
+  {
+    apellidos: "Cardew",
+    grado: "9",
+    asignatura: "Física",
+    as: "null",
+    id_asignatura: "2",
+    ci: "456789123",
+    tcp1: "null",
+    tcp2: "null",
+    exmane_final: "null",
+    nombre: "Wynn",
+    nota_final: "null",
+  },
+  {
+    apellidos: "Cardew",
+    grado: "9",
+    asignatura: "Química",
+    as: "null",
+    id_asignatura: "3",
+    ci: "456789123",
+    tcp1: "null",
+    tcp2: "null",
+    exmane_final: "null",
+    nombre: "Wynn",
+    nota_final: "null",
+  },
+  {
+    apellidos: "Cardew",
+    grado: "9",
+    asignatura: "Historia",
+    as: "null",
+    id_asignatura: "5",
+    ci: "456789123",
+    tcp1: "null",
+    tcp2: "null",
+    exmane_final: "null",
+    nombre: "Wynn",
+    nota_final: "null",
   },
 ];
 
-import { getAll as getAllStudents } from "./StudentsService";
-
-export const getAll = async (grade = 7) => {
-  const students = await getAllStudents();
+export const getAll = async (grade = 8) => {
   const res = [];
-  if (students) {
-    rows.map((el) => {
-      const index = students.findIndex(
-        (stud) => el.ci === stud.ci && stud.grade === grade
-      );
-
-      if (index >= 0) {
-        console.log(index);
-        res.push({
-          ...el,
-          name: students[index].name,
-          last_name: students[index].last_name,
-        });
-      }
-    });
-  }
-  console.log(res);
+  rows.map((item) => {
+    if (item.grado === grade + "") res.push({ ...item });
+  });
   return res;
 };
 export const add = (data) => {

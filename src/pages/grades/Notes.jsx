@@ -97,17 +97,27 @@ const Notes = ({ grade }) => {
       width: 150,
     },
     {
-      field: "name",
+      field: "nombre",
       headerName: "Nombre",
       width: 150,
     },
     {
-      field: "last_name",
+      field: "apellidos",
       headerName: "Apellido",
       width: 150,
     },
     {
-      field: "acs",
+      field: "grado",
+      headerName: "Grado",
+      width: 150,
+    },
+    {
+      field: "asignatura",
+      headerName: "Asignatura",
+      width: 150,
+    },
+    {
+      field: "as",
       headerName: "Acs",
       width: 150,
     },
@@ -122,12 +132,12 @@ const Notes = ({ grade }) => {
       width: 150,
     },
     {
-      field: "finalExam",
+      field: "exmane_final",
       headerName: "Examen Final",
       width: 150,
     },
     {
-      field: "finalNote",
+      field: "nota_final",
       headerName: "Nota Final",
       width: 150,
     },

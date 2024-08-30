@@ -41,21 +41,20 @@ const Login = () => {
 
   const handdleSubmit = (event) => {
     event.preventDefault();
-    console.log(formData);
     //llamada a la api ok
 
-    const request=async () => {
+    const request = async () => {
       try {
         const res = await login(formData);
         if (res) {
-          console.log(res);
-          // localStorage.setItem("isLogin", "1");
-          // localStorage.setItem("token", "1");
-          // navigate("/", { replace: true });
+          //console.log(res.data.token);
+          localStorage.setItem("isLogin", "1");
+          localStorage.setItem("token", res.data.token);
+          navigate("/", { replace: true });
         }
       } catch (error) {
-        console.log(error);
-        showAlertError && setShowAlertError(true);
+        //console.log(error);
+        !showAlertError && setShowAlertError(true);
         setKeyAlert(`alert${Date.now()}`);
       }
     };

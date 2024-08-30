@@ -10,7 +10,7 @@ const useFormValidator = (initialState) => {
     const { name, value, checked } = event.target;
 
     if (value !== "on" && value !== "off") {
-      console.log(name, value, checked);
+      // console.log(name, value, checked);
       setFormData({ ...formData, [name]: value });
     } else {
       setFormData({ ...formData, [name]: checked });

@@ -1,15 +1,3 @@
-// let rows = [
-//   { id: 1, username: "Snow", password: "Jon" },
-//   { id: 2, username: "Lannister", password: "Cersei" },
-//   // { id: 3, username: "Lannister", password: "Jaime" },
-//   // { id: 4, username: "Stark", password: "Arya" },
-//   // { id: 5, username: "Targaryen", password: "Daenerys" },
-//   // { id: 6, username: "Melisandre", password: null },
-//   // { id: 7, username: "Clifford", password: "Ferrara" },
-//   // { id: 8, username: "Frances", password: "Rossini" },
-//   // { id: 9, username: "Roxie", password: "Harvey" },
-// ];
-
 let rows = [
   {
     username: "admin",

@@ -61,3 +61,8 @@ export const remove = (ci) => {
   rows = [...cop];
   return true;
 };
+
+export const reportRequest = async () =>
+  axiosT.get(`/Notes/reporte`, {
+    responseType: "blob",
+  });

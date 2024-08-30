@@ -48,16 +48,6 @@ const Students = () => {
   useEffect(() => {
     //simulando el tiempo de respuesta de la api
     const getData = async () => {
-      // setLoading(true);
-      // let count = 0;
-      // const res1 = (await getAll()).map((item) => {
-      //   count++;
-      //   return { ...item, id: count };
-      // });
-      // setTimeout(() => {
-      //   setData(res1);
-      //   setLoading(false);
-      // }, 1000);
       setLoading(true);
       let count = 0;
       const res = await getAll();
@@ -73,6 +63,17 @@ const Students = () => {
     };
     if (request === 1) getData();
   }, [keyDataGrid, request]);
+
+  const handleReportButtom = () => {
+    const reportRequest = async () => {
+      const res = await reportRequest();
+      if (res) {
+        console.log(res);
+      }
+    };
+
+    reportRequest();
+  };
 
   const actionsCol = {
     field: "actions",
@@ -153,6 +154,13 @@ const Students = () => {
               onClick={handleOpenAddM}
             >
               Agregar
+            </Button>
+            <Button
+              variant="contained"
+              startIcon={<BsPersonFillAdd />}
+              onClick={handleReportButtom}
+            >
+              Reporte
             </Button>
             <ModalMUI
               open={openAddM}

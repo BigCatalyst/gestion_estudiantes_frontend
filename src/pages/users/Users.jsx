@@ -44,16 +44,17 @@ const Users = () => {
   useEffect(() => {
     //simulando el tiempo de respuesta de la api
     const getData = async () => {
-      setLoading(true);
-      let count = 0;
-      const res = (await getAll()).map((item) => {
-        count++;
-        return { ...item, id: count };
-      });
-      setTimeout(() => {
-        setData(res);
-        setLoading(false);
-      }, 2000);
+      // setLoading(true);
+      // let count = 0;
+      // const res = (await getAll()).map((item) => {
+      //   count++;
+      //   return { ...item, id: count };
+      // });
+      // setTimeout(() => {
+      //   setData(res);
+      //   setLoading(false);
+      // }, 2000);
+      
     };
 
     getData();

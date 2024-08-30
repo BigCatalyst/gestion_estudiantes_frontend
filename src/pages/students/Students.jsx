@@ -13,6 +13,7 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { dataGridStyles } from "../../components/mui/datagrid/DataGridStyle";
 
 const Students = () => {
+  const [request, setRequest] = useState(0);
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
   const [keyDataGrid, setKeyDataGrid] = useState(Date.now());
@@ -42,22 +43,36 @@ const Students = () => {
   const handleCloseDelM = () => setOpenDelM(false);
 
   useEffect(() => {
+    setRequest(1);
+  }, []);
+  useEffect(() => {
     //simulando el tiempo de respuesta de la api
     const getData = async () => {
+      // setLoading(true);
+      // let count = 0;
+      // const res1 = (await getAll()).map((item) => {
+      //   count++;
+      //   return { ...item, id: count };
+      // });
+      // setTimeout(() => {
+      //   setData(res1);
+      //   setLoading(false);
+      // }, 1000);
       setLoading(true);
       let count = 0;
-      const res = (await getAll()).map((item) => {
-        count++;
-        return { ...item, id: count };
-      });
-      setTimeout(() => {
-        setData(res);
+      const res = await getAll();
+      if (res) {
+        const dataRequest = res.data;
+        const dataT = dataRequest.map((item) => {
+          count++;
+          return { ...item, id: count };
+        });
+        setData(dataT);
         setLoading(false);
-      }, 1000);
+      }
     };
-
-    getData();
-  }, [keyDataGrid]);
+    if (request === 1) getData();
+  }, [keyDataGrid, request]);
 
   const actionsCol = {
     field: "actions",
@@ -100,7 +115,7 @@ const Students = () => {
       width: 150,
     },
     {
-      field: "last_name",
+      field: "lastName",
       headerName: "Last Name",
       width: 150,
     },
@@ -178,8 +193,8 @@ const Students = () => {
               rows={data}
               columns={columns}
               columnVisibilityModel={{
-                //id: false,
-                regNumber: false,
+                id: false,
+                //regNumber: false,
               }}
               initialState={{
                 dataSet: "Commodity",

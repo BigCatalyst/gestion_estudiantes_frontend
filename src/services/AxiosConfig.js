@@ -1,7 +1,7 @@
 import axios from "axios";
 import { URL_API } from "../config/env";
 
-const instance = axios.create({
+const axiosT = axios.create({
   baseURL: URL_API,
   headers: {
     "Content-Type": "application/json",
@@ -9,4 +9,4 @@ const instance = axios.create({
   },
 });
 
-export default instance;
+export default axiosT;

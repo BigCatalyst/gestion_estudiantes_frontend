@@ -1,9 +1,11 @@
+import axiosT from "./AxiosConfig";
+
 let rows = [
   {
     ci: "8932763289",
     address: "direccion",
     grade: 7,
-    last_name: "apellido",
+    lastName: "apellido",
     name: "nombre1",
     regNumber: "asd",
     sex: "hombre",
@@ -12,7 +14,7 @@ let rows = [
     ci: "8932763276",
     address: "direccion",
     grade: 8,
-    last_name: "apellido",
+    lastName: "apellido",
     name: "nombre2",
     regNumber: "asd",
     sex: "hombre",
@@ -21,14 +23,17 @@ let rows = [
     ci: "8932763223",
     address: "direccion",
     grade: 9,
-    last_name: "apellido",
+    lastName: "apellido",
     name: "nombre3",
     regNumber: "asd",
     sex: "hombre",
   },
 ];
 
-export const getAll = async () => rows;
+export const getAll = async () => {
+  // rows;
+  return axiosT.get("/Students/findAll");
+};
 export const add = (data) => {
   rows = [...rows, { ...data }];
   //console.log(rows);

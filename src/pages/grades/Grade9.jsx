@@ -3,7 +3,7 @@ import Notes from "./Notes";
 
 const Grade9 = () => {
   return (
-    <Page title="9no Grado">
+    <Page title="8vo Grado">
       <Notes grade={9} />
     </Page>
   );

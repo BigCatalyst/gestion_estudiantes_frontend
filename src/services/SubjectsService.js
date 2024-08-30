@@ -17,6 +17,42 @@ let rows = [
     name: "Física",
     tcp2: true,
   },
+  {
+    id: 4,
+    grade: 8,
+    name: "Matemática",
+    tcp2: true,
+  },
+  {
+    id: 5,
+    grade: 8,
+    name: "Historia",
+    tcp2: false,
+  },
+  {
+    id: 6,
+    grade: 8,
+    name: "Física",
+    tcp2: true,
+  },
+  {
+    id: 7,
+    grade: 9,
+    name: "Matemática",
+    tcp2: true,
+  },
+  {
+    id: 8,
+    grade: 9,
+    name: "Historia",
+    tcp2: false,
+  },
+  {
+    id: 9,
+    grade: 9,
+    name: "Física",
+    tcp2: true,
+  },
 ];
 
 export const getAll = async () => rows;

@@ -181,13 +181,16 @@ const Users = () => {
               rows={data}
               columns={columns}
               columnVisibilityModel={{
-                id: false,
+                //id: false,
                 password: false,
               }}
               initialState={{
                 dataSet: "Commodity",
                 maxColumns: 6,
                 pagination: { paginationModel: { pageSize: 5 } },
+                sorting: {
+                  sortModel: [{ field: "id", sort: "desc" }],
+                },
               }}
               pageSizeOptions={[5, 10, 25]}
               sx={dataGridStyles}

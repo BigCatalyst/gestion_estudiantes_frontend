@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import Page from "../../components/page/Page";
 import { getAll } from "../../services/NotesServices";
 import { getAll as getAllStudents } from "../../services/StudentsService";
 import { Box, Button, IconButton } from "@mui/material";
@@ -50,35 +49,12 @@ const Notes = ({ grade }) => {
       setLoading(true);
       let count = 0;
       let res;
-      //   const res = (await getAll()).map((item) => {
-      //     count++;
-      //     return { ...item, id: count };
-      //   });
-      const notes = await getAll();
+      const notes = await getAll(grade);
       if (notes) {
-        const students = await getAllStudents();
-        if (students) {
-          res = notes.map((item) => {
-            count++;
-            const ci = item.ci;
-            const student = students.find(
-              (stud) => stud.ci === ci && stud.grade === grade
-            );
-
-            let note = { id: count };
-
-            if (student) {
-              console.log(student);
-              return { ...note };
-            }
-            //return { ...note };
-            // if (student) {
-            //   return { ...item, id: count };
-            // }
-
-            //return { ...item, id: count };
-          });
-        }
+        res = notes.map((item) => {
+          count++;
+          return { ...item, id: count };
+        });
       }
       setTimeout(() => {
         setData(res);
@@ -120,6 +96,16 @@ const Notes = ({ grade }) => {
       width: 150,
     },
     {
+      field: "name",
+      headerName: "Nombre",
+      width: 150,
+    },
+    {
+      field: "last_name",
+      headerName: "Apellido",
+      width: 150,
+    },
+    {
       field: "acs",
       headerName: "Acs",
       width: 150,
@@ -148,16 +134,10 @@ const Notes = ({ grade }) => {
   ];
 
   return (
-    <Page title="Altas/Bajas">
-      <Box>
-        <Grid container spacing={3} sx={{ mt: 1 }}>
-          <Grid
-            xs={12}
-            display="flex"
-            justifyContent="flex-end"
-            sx={{ mx: 10 }}
-          >
-            {/* <TextField
+    <Box>
+      <Grid container spacing={3} sx={{ mt: 1 }}>
+        <Grid xs={12} display="flex" justifyContent="flex-end" sx={{ mx: 10 }}>
+          {/* <TextField
               id="buscar"
               label="Buscar"
               variant="outlined"
@@ -169,71 +149,69 @@ const Notes = ({ grade }) => {
                 ),
               }}
             /> */}
-            <Button
-              variant="contained"
-              startIcon={<BsPersonFillAdd />}
-              onClick={handleOpenAddM}
-            >
-              Agregar
-            </Button>
-            <ModalMUI open={openAddM} handleClose={handleCloseAddM}>
-              <AddNote
-                setKeyDataGrid={setKeyDataGrid}
-                handleCloseAddM={handleCloseAddM}
-              />
-            </ModalMUI>
-            <ModalMUI open={openUpdM} handleClose={handleCloseUpdM}>
-              <h3 style={{ marginBottom: "15px" }}>
-                Update Id:{dataEdit && dataEdit.ci}
-              </h3>
-              <UpdateNote
-                setKeyDataGrid={setKeyDataGrid}
-                handleCloseUpdM={handleCloseUpdM}
-                dataEdit={dataEdit}
-              />
-            </ModalMUI>
-            <ModalMUI open={openDelM} handleClose={handleCloseDelM}>
-              <DeleteNote
-                setKeyDataGrid={setKeyDataGrid}
-                handleCloseDelM={handleCloseDelM}
-                dataDel={dataDel}
-              />
-            </ModalMUI>
-          </Grid>
-          <Grid xs={12}>
-            <DataGrid
-              key={keyDataGrid}
-              rows={data}
-              columns={columns}
-              columnVisibilityModel={{
-                id: false,
-                regNumber: false,
-              }}
-              initialState={{
-                dataSet: "Commodity",
-                maxColumns: 6,
-                pagination: { paginationModel: { pageSize: 5 } },
-              }}
-              pageSizeOptions={[5, 10, 25]}
-              sx={dataGridStyles}
-              loading={loading}
-              disableDensitySelector
-              disableColumnSelector
-              slotProps={{
-                toolbar: {
-                  csvOptions: { disableToolbarButton: true },
-                  printOptions: { disableToolbarButton: true },
-                  // Agrega más opciones de exportación si es necesario
-                },
-              }}
-              slots={{
-                toolbar: GridToolbar,
-              }}
+          <Button
+            variant="contained"
+            startIcon={<BsPersonFillAdd />}
+            onClick={handleOpenAddM}
+          >
+            Agregar
+          </Button>
+          <ModalMUI open={openAddM} handleClose={handleCloseAddM}>
+            <AddNote
+              setKeyDataGrid={setKeyDataGrid}
+              handleCloseAddM={handleCloseAddM}
             />
-          </Grid>
+          </ModalMUI>
+          <ModalMUI open={openUpdM} handleClose={handleCloseUpdM}>
+            <h3 style={{ marginBottom: "15px" }}>
+              Update Id:{dataEdit && dataEdit.ci}
+            </h3>
+            <UpdateNote
+              setKeyDataGrid={setKeyDataGrid}
+              handleCloseUpdM={handleCloseUpdM}
+              dataEdit={dataEdit}
+            />
+          </ModalMUI>
+          <ModalMUI open={openDelM} handleClose={handleCloseDelM}>
+            <DeleteNote
+              setKeyDataGrid={setKeyDataGrid}
+              handleCloseDelM={handleCloseDelM}
+              dataDel={dataDel}
+            />
+          </ModalMUI>
         </Grid>
-      </Box>
-    </Page>
+        <Grid xs={12}>
+          <DataGrid
+            key={keyDataGrid}
+            rows={data}
+            columns={columns}
+            columnVisibilityModel={{
+              id: false,
+            }}
+            initialState={{
+              dataSet: "Commodity",
+              maxColumns: 6,
+              pagination: { paginationModel: { pageSize: 5 } },
+            }}
+            pageSizeOptions={[5, 10, 25]}
+            sx={dataGridStyles}
+            loading={loading}
+            disableDensitySelector
+            disableColumnSelector
+            slotProps={{
+              toolbar: {
+                csvOptions: { disableToolbarButton: true },
+                printOptions: { disableToolbarButton: true },
+                // Agrega más opciones de exportación si es necesario
+              },
+            }}
+            slots={{
+              toolbar: GridToolbar,
+            }}
+          />
+        </Grid>
+      </Grid>
+    </Box>
   );
 };
 

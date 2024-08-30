@@ -12,6 +12,7 @@ import {
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import useFormValidator from "../../validators/FormValidator";
 import Alert from "../../components/mui/alert/Alert";
+import { login } from "../../services/AuthService";
 
 const Login = () => {
   const [showAlertError, setShowAlertError] = useState(false);
@@ -42,13 +43,23 @@ const Login = () => {
     event.preventDefault();
     console.log(formData);
     //llamada a la api ok
-    if (formData.username === "admin" && formData.password === "admin") {
-      localStorage.setItem("isLogin", "1");
-      navigate("/", { replace: true });
-    } else {
-      !showAlertError && setShowAlertError(true);
-      setKeyAlert(`alert${Date.now()}`);
-    }
+
+    const request=async () => {
+      try {
+        const res = await login(formData);
+        if (res) {
+          console.log(res);
+          // localStorage.setItem("isLogin", "1");
+          // localStorage.setItem("token", "1");
+          // navigate("/", { replace: true });
+        }
+      } catch (error) {
+        console.log(error);
+        showAlertError && setShowAlertError(true);
+        setKeyAlert(`alert${Date.now()}`);
+      }
+    };
+    request();
   };
 
   return (

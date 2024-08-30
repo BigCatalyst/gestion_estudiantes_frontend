@@ -64,6 +64,8 @@ const Notes = ({ grade }) => {
     getData();
   }, [keyDataGrid]);
 
+  const titleGrade = grade === 7 ? "7mo" : grade === 8 ? "8vo" : "9no";
+
   const actionsCol = {
     field: "actions",
     type: "actions",
@@ -143,16 +145,17 @@ const Notes = ({ grade }) => {
           >
             Agregar
           </Button>
-          <ModalMUI open={openAddM} handleClose={handleCloseAddM}>
+          <ModalMUI
+            open={openAddM}
+            handleClose={handleCloseAddM}
+            title={`Adicionar Nota/Asignatura ${titleGrade}`}
+          >
             <AddNote
               setKeyDataGrid={setKeyDataGrid}
               handleCloseAddM={handleCloseAddM}
             />
           </ModalMUI>
           <ModalMUI open={openUpdM} handleClose={handleCloseUpdM}>
-            <h3 style={{ marginBottom: "15px" }}>
-              Update Id:{dataEdit && dataEdit.ci}
-            </h3>
             <UpdateNote
               setKeyDataGrid={setKeyDataGrid}
               handleCloseUpdM={handleCloseUpdM}

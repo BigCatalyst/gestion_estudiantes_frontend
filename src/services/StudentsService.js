@@ -62,7 +62,25 @@ export const remove = (ci) => {
   return true;
 };
 
-export const reportRequest = async () =>
-  axiosT.get(`/Notes/reporte`, {
-    responseType: "blob",
-  });
+export const reportRequest = async () => {
+  try {
+    const res = await axiosT.get(`/Notes/reporte`, {
+      responseType: "blob",
+    });
+    if (res) {
+      console.log("respuesta");
+      console.log(res);
+      const pdfBlob = new Blob([res.data], { type: "application/pdf" });
+      const pdfUrl = URL.createObjectURL(pdfBlob);
+
+      const link = document.createElement("a");
+      link.href = pdfUrl;
+      link.download = "reporte.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};

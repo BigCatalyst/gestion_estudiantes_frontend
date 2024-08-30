@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Page from "../../components/page/Page";
-import { getAll } from "../../services/StudentsService";
+import { getAll, reportRequest } from "../../services/StudentsService";
 import { Box, Button, IconButton } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { Delete, Edit } from "@mui/icons-material";
@@ -64,15 +64,8 @@ const Students = () => {
     if (request === 1) getData();
   }, [keyDataGrid, request]);
 
-  const handleReportButtom = () => {
-    const reportRequest = async () => {
-      const res = await reportRequest();
-      if (res) {
-        console.log(res);
-      }
-    };
-
-    reportRequest();
+  const handleReportButtom = async () => {
+    await reportRequest();
   };
 
   const actionsCol = {
@@ -147,6 +140,7 @@ const Students = () => {
             display="flex"
             justifyContent="flex-end"
             sx={{ mx: 10 }}
+            gap={2}
           >
             <Button
               variant="contained"

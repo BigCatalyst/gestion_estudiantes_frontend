@@ -132,18 +132,6 @@ const Users = () => {
             justifyContent="flex-end"
             sx={{ mx: 10 }}
           >
-            {/* <TextField
-              id="buscar"
-              label="Buscar"
-              variant="outlined"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <MdOutlinePersonSearch style={{ width: 24, height: 24 }} />
-                  </InputAdornment>
-                ),
-              }}
-            /> */}
             <Button
               variant="contained"
               startIcon={<BsPersonFillAdd />}

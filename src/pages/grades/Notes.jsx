@@ -2,7 +2,6 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { getAll } from "../../services/NotesServices";
-import { getAll as getAllStudents } from "../../services/StudentsService";
 import { Box, Button, IconButton } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { Delete, Edit } from "@mui/icons-material";
@@ -137,18 +136,6 @@ const Notes = ({ grade }) => {
     <Box>
       <Grid container spacing={3} sx={{ mt: 1 }}>
         <Grid xs={12} display="flex" justifyContent="flex-end" sx={{ mx: 10 }}>
-          {/* <TextField
-              id="buscar"
-              label="Buscar"
-              variant="outlined"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <MdOutlinePersonSearch style={{ width: 24, height: 24 }} />
-                  </InputAdornment>
-                ),
-              }}
-            /> */}
           <Button
             variant="contained"
             startIcon={<BsPersonFillAdd />}

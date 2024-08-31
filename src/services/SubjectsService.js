@@ -1,5 +1,7 @@
 import axios from "axios";
+
 import { axiosCong } from "../config/env";
+
 
 let rows = [
   {
@@ -58,6 +60,7 @@ let rows = [
   },
 ];
 
+
 export const getAll = async () => axios.get("/Subjects/findAll", axiosCong());
 export const add =  async (data) => axios.post("/Subjects/create",data, axiosCong());
 export const update = async (data) => axios.put("/Subjects/update",data, axiosCong());
@@ -90,6 +93,7 @@ export const reporte =  async () =>{
       document.body.removeChild(link);
     }else{
       console.log("no fue 200"+res.status);
+
     }
 
   }catch(error){

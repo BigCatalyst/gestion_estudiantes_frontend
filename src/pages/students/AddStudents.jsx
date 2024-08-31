@@ -14,24 +14,36 @@ import { add } from "../../services/StudentsService";
 
 const AddStudents = ({ setKeyDataGrid, handleCloseAddM }) => {
   //Hook personalizado para validar los campor del formulario MUI
-  const { formData, formError, handdleChangeForm } = useFormValidator({
-    ci: "",
-    address: "",
-    grade: 7,
-    lastName: "",
-    name: "",
-    regNumber: "",
-    sex: "",
-  });
+
+  const { formData, formError, handdleChangeForm, setFormError } =
+    useFormValidator({
+      ci: "",
+      address: "",
+      grade: 7,
+      lastName: "",
+      name: "",
+      regNumber: "",
+      sex: "",
+    });
 
   const handdleSubmit = (event) => {
     event.preventDefault();
-    //console.log(formData);
-    //llamada a la api ok
-    const res = add(formData);
-    if (res) {
-      setKeyDataGrid(Date.now());
-      handleCloseAddM();
+    // if (formData.ci.length !== 11) {
+    //   setFormError({ ...formError, ci: "EL CI debe ser de 11 caracterres" });
+    // }
+
+    if (formData.ci.length !== 11) {
+      setFormError({ ...formError, ci: "EL CI debe tener 11 caracteres" });
+    }
+    if (formData.sex.length > 5) {
+      setFormError({ ...formError, sex: "EL Sexo debe tener 5 caracteres" });
+    } else {
+      console.log(formData);
+      const res = add(formData);
+      if (res) {
+        setKeyDataGrid(Date.now());
+        handleCloseAddM();
+      }
     }
   };
 
@@ -77,11 +89,11 @@ const AddStudents = ({ setKeyDataGrid, handleCloseAddM }) => {
             </Select>
           </FormControl>
           <TextField
-            name="last_name"
+            name="lastName"
             onChange={handdleChangeForm}
-            value={formData.last_name}
-            error={formError.last_name ? true : false}
-            helperText={formError.last_name}
+            value={formData.lastName}
+            error={formError.lastName ? true : false}
+            helperText={formError.lastName}
             fullWidth
             label="Apellido"
             required

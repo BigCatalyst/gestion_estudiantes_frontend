@@ -14,24 +14,32 @@ import { add } from "../../services/StudentsService";
 
 const AddStudents = ({ setKeyDataGrid, handleCloseAddM }) => {
   //Hook personalizado para validar los campor del formulario MUI
-  const { formData, formError, handdleChangeForm } = useFormValidator({
-    ci: "",
-    address: "",
-    grade: 7,
-    last_name: "",
-    name: "",
-    regNumber: "",
-    sex: "",
-  });
+  const { formData, formError, handdleChangeForm, setFormError } =
+    useFormValidator({
+      ci: "",
+      address: "",
+      grade: 7,
+      last_name: "",
+      name: "",
+      regNumber: "",
+      sex: "",
+    });
 
   const handdleSubmit = (event) => {
     event.preventDefault();
-    //console.log(formData);
-    //llamada a la api ok
-    const res = add(formData);
-    if (res) {
-      setKeyDataGrid(Date.now());
-      handleCloseAddM();
+    // if (formData.ci.length !== 11) {
+    //   setFormError({ ...formError, ci: "EL CI debe ser de 11 caracterres" });
+    // }
+
+    console.log(formData);
+    console.log(formError);
+
+    if (!formError) {
+      const res = add(formData);
+      if (res) {
+        setKeyDataGrid(Date.now());
+        handleCloseAddM();
+      }
     }
   };
 

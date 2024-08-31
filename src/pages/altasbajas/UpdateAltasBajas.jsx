@@ -59,7 +59,7 @@ const UpdateAltaBajas = ({ setKeyDataGrid, handleCloseUpdM, dataEdit }) => {
     ci: dataEdit.ci,
   });
 
-  const [fecha, setFecha] = useState(dayjs(dataEdit.date));
+  const [fecha, setFecha] = useState(dayjs());
   const handleChange = (newValue) => {
     const fecha = newValue?.toJSON().split("T")[0];
     console.log(newValue?.toJSON());

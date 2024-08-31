@@ -2,7 +2,9 @@ import axios from "axios";
 
 import { axiosCong } from "../config/env";
 
-export const getAll = async () => axios.get("/Notes/findAll", axiosCong());
+export const getAll = async (grade = 8) => {
+  return axios.get(`Notes/notasestudiantes/${grade}`, axiosCong());
+};
 export const add =  async (data) => axios.post("/Notes/create",data, axiosCong());
 export const update = async (data) => axios.put("/Notes/update",data, axiosCong());
 export const changepassword = async (data) => axios.put("/Notes/changepassword",data, axiosCong());

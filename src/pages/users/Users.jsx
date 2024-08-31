@@ -5,12 +5,13 @@ import { BsPersonFillAdd } from "react-icons/bs";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import ModalMUI from "../../components/mui/modal/Modal";
-import { getAll } from "../../services/UserService";
+import { getAll, reporte } from "../../services/UserService";
 import { Delete, Edit } from "@mui/icons-material";
 import { dataGridStyles } from "../../components/mui/datagrid/DataGridStyle";
 import AddUser from "./AddUser";
 import UpdateUser from "./UpdateUser";
 import DeleteUser from "./DeleteUser";
+import { FaFilePdf } from "react-icons/fa";
 
 const Users = () => {
   //const [request, setRequest] = useState(0);
@@ -85,6 +86,10 @@ const Users = () => {
     ),
   };
 
+  const handleReportButtom = async () => {
+    await reporte();
+  };
+
   const columns = [
     { field: "id", headerName: "ID", width: 150 },
     {
@@ -134,7 +139,16 @@ const Users = () => {
             display="flex"
             justifyContent="flex-end"
             sx={{ mx: 10 }}
+            gap={2}
           >
+            <Button
+              variant="contained"
+              startIcon={<FaFilePdf />}
+              onClick={handleReportButtom}
+            >
+              Reporte
+            </Button>
+
             <Button
               variant="contained"
               startIcon={<BsPersonFillAdd />}
@@ -142,6 +156,7 @@ const Users = () => {
             >
               Agregar
             </Button>
+
             <ModalMUI
               open={openAddM}
               handleClose={handleCloseAddM}

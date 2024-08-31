@@ -43,26 +43,26 @@ const NotasGraduados = () => {
 
   const columns = [
     { field: "id", headerName: "ID", width: 150 },
-    // {
-    //   field: "ci",
-    //   headerName: "CI",
-    //   width: 150,
-    // },
-    // {
-    //   field: "nombre",
-    //   headerName: "Nombre",
-    //   width: 150,
-    // },
-    // {
-    //   field: "apellidos",
-    //   headerName: "Apellido",
-    //   width: 150,
-    // },
     {
-      field: "idgraduado",
-      headerName: "ID Graduado",
+      field: "ci",
+      headerName: "CI",
       width: 150,
     },
+    {
+      field: "nombre",
+      headerName: "Nombre",
+      width: 150,
+    },
+    {
+      field: "apellidos",
+      headerName: "Apellido",
+      width: 150,
+    },
+    // {
+    //   field: "idgraduado",
+    //   headerName: "ID Graduado",
+    //   width: 150,
+    // },
     {
       field: "nombreasignatura",
       headerName: "Asignatura",

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Page from "../../components/page/Page";
-import { getAll, reportRequest } from "../../services/StudentsService";
+import { getAll, reporte_escalafon, reportRequest } from "../../services/StudentsService";
 import { Box, Button, IconButton } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { Delete, Edit } from "@mui/icons-material";
@@ -64,6 +64,9 @@ const Students = () => {
 
   const handleReportButtom = async () => {
     await reportRequest();
+  };
+  const handleReporteEscalfonButtom = async () => {
+    await reporte_escalafon();
   };
 
   const actionsCol = {
@@ -153,6 +156,13 @@ const Students = () => {
               onClick={handleReportButtom}
             >
               Reporte
+            </Button>
+            <Button
+              variant="contained"
+              startIcon={<FaFilePdf />}
+              onClick={handleReporteEscalfonButtom}
+            >
+              Escalafón 
             </Button>
             <ModalMUI
               open={openAddM}

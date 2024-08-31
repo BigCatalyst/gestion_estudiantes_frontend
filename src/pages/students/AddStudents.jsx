@@ -18,7 +18,7 @@ const AddStudents = ({ setKeyDataGrid, handleCloseAddM }) => {
     ci: "",
     address: "",
     grade: 7,
-    last_name: "",
+    lastName: "",
     name: "",
     regNumber: "",
     sex: "",

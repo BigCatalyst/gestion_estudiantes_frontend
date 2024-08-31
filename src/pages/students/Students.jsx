@@ -192,10 +192,12 @@ const Students = () => {
               key={keyDataGrid}
               rows={data}
               columns={columns}
-              columnVisibilityModel={{
-                id: false,
-                //regNumber: false,
-              }}
+              columnVisibilityModel={
+                {
+                  //id: false,
+                  //regNumber: false,
+                }
+              }
               initialState={{
                 dataSet: "Commodity",
                 maxColumns: 6,

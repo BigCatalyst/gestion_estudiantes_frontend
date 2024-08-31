@@ -48,7 +48,7 @@ const Students = () => {
       setLoading(true);
       let count = 0;
       const res = await getAll();
-      console.log(localStorage.getItem("token"));
+
       if (res) {
         const dataRequest = res.data;
         const dataT = dataRequest.map((item) => {

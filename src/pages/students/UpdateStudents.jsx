@@ -23,7 +23,7 @@ const UpdateStudents = ({ setKeyDataGrid, handleCloseUpdM, dataEdit }) => {
       sex: dataEdit.sex,
     });
 
-  const handdleSubmit = (event) => {
+  const handdleSubmit = async (event) => {
     event.preventDefault();
     //llamada a la api ok
     if (formData.ci.length !== 11) {
@@ -32,7 +32,7 @@ const UpdateStudents = ({ setKeyDataGrid, handleCloseUpdM, dataEdit }) => {
     if (formData.sex.length > 5) {
       setFormError({ ...formError, sex: "EL Sexo debe tener 5 caracteres" });
     } else {
-      const res = update({ ...formData, ci: dataEdit.ci });
+      const res = await update({ ...formData, ci: dataEdit.ci });
       if (res) {
         setKeyDataGrid(Date.now());
         handleCloseUpdM();

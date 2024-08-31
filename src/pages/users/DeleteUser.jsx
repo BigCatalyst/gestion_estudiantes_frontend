@@ -3,10 +3,10 @@ import { Button, Container, Grid } from "@mui/material";
 import { remove } from "../../services/UserService";
 
 const DeleteUser = ({ setKeyDataGrid, handleCloseDelM, dataDel }) => {
-  const handdleOk = (event) => {
+  const handdleOk = async (event) => {
     event.preventDefault();
 
-    const res = remove(dataDel.username);
+    const res = await remove(dataDel.username);
     console.log(res);
     if (res) {
       setKeyDataGrid(Date.now());

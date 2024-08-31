@@ -42,10 +42,10 @@ const UpdateUser = ({ setKeyDataGrid, handleCloseUpdM, dataEdit }) => {
     descripcion: dataEdit.descripcion,
   });
 
-  const handdleSubmit = (event) => {
+  const handdleSubmit = async (event) => {
     event.preventDefault();
     //llamada a la api ok
-    const res = update({ ...formData, id: dataEdit.id });
+    const res = await update({ ...formData, id: dataEdit.id });
     if (res) {
       setKeyDataGrid(Date.now());
       handleCloseUpdM();

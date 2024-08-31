@@ -20,7 +20,7 @@ let rows = [
 export const getAll = async () => axios.get("/Careers/findAll", axiosCong());
 export const add = async (data) => axios.post("/Careers/create",data, axiosCong());
 export const update = async (data) => axios.put("/Careers/update",data, axiosCong());
-export const remove =  async (id) => axios.delete(`/Careers/changepassword/${id}`, axiosCong());
+export const remove =  async (id) => axios.delete(`/Careers/delete/${id}`, axiosCong());
 export const reporte =  async () =>{
   try{
     const res=await axios.get(

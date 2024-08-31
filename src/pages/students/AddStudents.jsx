@@ -14,6 +14,7 @@ import { add } from "../../services/StudentsService";
 
 const AddStudents = ({ setKeyDataGrid, handleCloseAddM }) => {
   //Hook personalizado para validar los campor del formulario MUI
+
   const { formData, formError, handdleChangeForm, setFormError } =
     useFormValidator({
       ci: "",
@@ -24,6 +25,7 @@ const AddStudents = ({ setKeyDataGrid, handleCloseAddM }) => {
       regNumber: "",
       sex: "",
     });
+
 
   const handdleSubmit = (event) => {
     event.preventDefault();

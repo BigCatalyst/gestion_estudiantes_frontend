@@ -1,5 +1,7 @@
 import axios from "axios";
-import { axiosCong, URL_API } from "../config/env";
+
+import { axiosCong } from "../config/env";
+
 
 let rows = [
   {
@@ -58,38 +60,45 @@ let rows = [
   },
 ];
 
-// export const getAll = async () => rows;
-export const getAll = async () => {
-  {
-    // rows;
-    return axios.get(URL_API + "/Subjects/findAll", axiosCong());
-  }
-};
-export const add = (data) => {
-  let id = rows[rows.length - 1].id + 1;
-  rows = [...rows, { ...data, id }];
-  //console.log(rows);
-  return true;
-};
-export const update = (data) => {
-  console.log(data);
-  const updatedRows = rows.map((row) => {
-    //console.log(row.username, data.username);
-    if (row.id === data.id) {
-      return { ...data };
+
+export const getAll = async () => axios.get("/Subjects/findAll", axiosCong());
+export const add =  async (data) => axios.post("/Subjects/create",data, axiosCong());
+export const update = async (data) => axios.put("/Subjects/update",data, axiosCong());
+export const changepassword = async (data) => axios.put("/Subjects/changepassword",data, axiosCong());
+export const remove =  async (id) => axios.delete(`/Subjects/changepassword/${id}`, axiosCong());
+export const findid =  async (id) => axios.get(`/Subjects/find/${id}`, axiosCong());
+
+// export const reporte = async () => axios.get("/Users/reporte", axiosCong());
+
+export const reporte =  async () =>{
+  try{
+    const res=await axios.get(
+      "/Subjects/reporte", 
+    {
+      responseType: "blob",
+      ...axiosCong()
+    });
+  
+    if (res.status==200) {
+      console.log("respuesta");
+      console.log(res);
+      const pdfBlob = new Blob([res.data], { type: "application/pdf" });
+      const pdfUrl = URL.createObjectURL(pdfBlob);
+  
+      const link = document.createElement("a");
+      link.href = pdfUrl;
+      link.download = "reporte.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }else{
+      console.log("no fue 200"+res.status);
+
     }
-    return { ...row };
-  });
 
-  rows = updatedRows;
+  }catch(error){
+    console.log(error);
+  }
+  
 
-  return true;
-};
-export const remove = (id) => {
-  let cop = [];
-  rows.map((el) => {
-    if (el.id != id) return cop.push(el);
-  });
-  rows = [...cop];
-  return true;
 };

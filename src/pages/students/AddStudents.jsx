@@ -26,7 +26,7 @@ const AddStudents = ({ setKeyDataGrid, handleCloseAddM }) => {
       sex: "",
     });
 
-  const handdleSubmit = (event) => {
+  const handdleSubmit = async(event) => {
     event.preventDefault();
     // if (formData.ci.length !== 11) {
     //   setFormError({ ...formError, ci: "EL CI debe ser de 11 caracterres" });
@@ -39,7 +39,7 @@ const AddStudents = ({ setKeyDataGrid, handleCloseAddM }) => {
       setFormError({ ...formError, sex: "EL Sexo debe tener 5 caracteres" });
     } else {
       console.log(formData);
-      const res = add(formData);
+      const res = await add(formData);
       if (res) {
         setKeyDataGrid(Date.now());
         handleCloseAddM();

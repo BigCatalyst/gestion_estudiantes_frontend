@@ -42,11 +42,11 @@ const AddUser = ({ setKeyDataGrid, handleCloseAddM }) => {
     descripcion: "",
   });
 
-  const handdleSubmit = (event) => {
+  const handdleSubmit = async (event) => {
     event.preventDefault();
     //console.log(formData);
     //llamada a la api ok
-    const res = add(formData);
+    const res = await add(formData);
     if (res) {
       setKeyDataGrid(Date.now());
       handleCloseAddM();

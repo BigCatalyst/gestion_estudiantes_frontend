@@ -49,16 +49,16 @@ const Notes = ({ grade }) => {
       let count = 0;
       let res;
       const notes = await getAll(grade);
+      console.log(notes);
       if (notes) {
-        res = notes.map((item) => {
+        res = notes.data.map((item) => {
           count++;
           return { ...item, id: count };
         });
-      }
-      setTimeout(() => {
+
         setData(res);
         setLoading(false);
-      }, 1000);
+      }
     };
 
     getData();
@@ -107,7 +107,7 @@ const Notes = ({ grade }) => {
       width: 150,
     },
     {
-      field: "grado",
+      field: "grade",
       headerName: "Grado",
       width: 150,
     },

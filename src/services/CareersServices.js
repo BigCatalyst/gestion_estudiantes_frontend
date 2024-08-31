@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 import { axiosCong } from "../config/env";
 
 
@@ -15,7 +16,6 @@ let rows = [
     name: "Industrial - Ingeniero Informatico (te vas a frustrar, vete del pais, peligro ponziiii)",
   },
 ];
-
 
 export const getAll = async () => axios.get("/Careers/findAll", axiosCong());
 export const add = async (data) => axios.post("/Careers/create",data, axiosCong());

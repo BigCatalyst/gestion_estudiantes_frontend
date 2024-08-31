@@ -7,10 +7,12 @@ export const getAll = async () => axios.get("/Subjects/findAll", axiosCong());
 export const findid = async (id) =>
   axios.get(`/Subjects/find/${id}`, axiosCong());
 
+
 export const add = async (data) =>
   axios.post("/Subjects/create", data, axiosCong());
 export const update = async (data) =>
   axios.put("/Subjects/update", data, axiosCong());
+
 
 export const remove = async (id) =>
   axios.delete(`/Subjects/delete/${id}`, axiosCong());

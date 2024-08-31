@@ -13,7 +13,7 @@ export const add =  async (data) => axios.post("/Subjects/create",data, axiosCon
 export const update = async (data) => axios.put("/Subjects/update",data, axiosCong());
 
 export const remove =  async (id) => axios.delete(`/Subjects/delete/${id}`, axiosCong());
-export const findid =  async (id) => axios.get(`/Subjects/find/${id}`, axiosCong());
+
 
 
 // export const reporte = async () => axios.get("/Users/reporte", axiosCong());

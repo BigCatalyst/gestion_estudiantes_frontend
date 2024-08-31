@@ -1,153 +1,47 @@
 import axios from "axios";
-import { axiosCong } from "../config/env";
 
-let rows = [
-  {
-    apellidos: "Cardew",
-    grado: "7",
-    asignatura: "Física",
-    as: "null",
-    id_asignatura: "2",
-    ci: "456789123",
-    tcp1: "null",
-    tcp2: "null",
-    exmane_final: "null",
-    nombre: "Wynn",
-    nota_final: "null",
-  },
-  {
-    apellidos: "Cardew",
-    grado: "7",
-    asignatura: "Química",
-    as: "null",
-    id_asignatura: "3",
-    ci: "456789123",
-    tcp1: "null",
-    tcp2: "null",
-    exmane_final: "null",
-    nombre: "Wynn",
-    nota_final: "null",
-  },
-  {
-    apellidos: "Cardew",
-    grado: "7",
-    asignatura: "Historia",
-    as: "null",
-    id_asignatura: "5",
-    ci: "456789123",
-    tcp1: "null",
-    tcp2: "null",
-    exmane_final: "null",
-    nombre: "Wynn",
-    nota_final: "null",
-  },
-  {
-    apellidos: "Cardew",
-    grado: "8",
-    asignatura: "Física",
-    as: "null",
-    id_asignatura: "2",
-    ci: "456789123",
-    tcp1: "null",
-    tcp2: "null",
-    exmane_final: "null",
-    nombre: "Wynn",
-    nota_final: "null",
-  },
-  {
-    apellidos: "Cardew",
-    grado: "8",
-    asignatura: "Química",
-    as: "null",
-    id_asignatura: "3",
-    ci: "456789123",
-    tcp1: "null",
-    tcp2: "null",
-    exmane_final: "null",
-    nombre: "Wynn",
-    nota_final: "null",
-  },
-  {
-    apellidos: "Cardew",
-    grado: "8",
-    asignatura: "Historia",
-    as: "null",
-    id_asignatura: "5",
-    ci: "456789123",
-    tcp1: "null",
-    tcp2: "null",
-    exmane_final: "null",
-    nombre: "Wynn",
-    nota_final: "null",
-  },
-  {
-    apellidos: "Cardew",
-    grado: "9",
-    asignatura: "Física",
-    as: "null",
-    id_asignatura: "2",
-    ci: "456789123",
-    tcp1: "null",
-    tcp2: "null",
-    exmane_final: "null",
-    nombre: "Wynn",
-    nota_final: "null",
-  },
-  {
-    apellidos: "Cardew",
-    grado: "9",
-    asignatura: "Química",
-    as: "null",
-    id_asignatura: "3",
-    ci: "456789123",
-    tcp1: "null",
-    tcp2: "null",
-    exmane_final: "null",
-    nombre: "Wynn",
-    nota_final: "null",
-  },
-  {
-    apellidos: "Cardew",
-    grado: "9",
-    asignatura: "Historia",
-    as: "null",
-    id_asignatura: "5",
-    ci: "456789123",
-    tcp1: "null",
-    tcp2: "null",
-    exmane_final: "null",
-    nombre: "Wynn",
-    nota_final: "null",
-  },
-];
+import { axiosCong } from "../config/env";
 
 export const getAll = async (grade = 8) => {
   return axios.get(`Notes/notasestudiantes/${grade}`, axiosCong());
 };
-export const add = (data) => {
-  rows = [...rows, { ...data }];
-  //console.log(rows);
-  return true;
-};
-export const update = (data) => {
-  console.log(data);
-  const updatedRows = rows.map((row) => {
-    //console.log(row.username, data.username);
-    if (row.ci === data.ci && row.subject === data.subject) {
-      return { ...data };
+export const add =  async (data) => axios.post("/Notes/create",data, axiosCong());
+export const update = async (data) => axios.put("/Notes/update",data, axiosCong());
+export const changepassword = async (data) => axios.put("/Notes/changepassword",data, axiosCong());
+export const remove =  async (id) => axios.delete(`/Notes/changepassword/${id}`, axiosCong());
+export const findid =  async (id) => axios.get(`/Notes/find/${id}`, axiosCong());
+
+// export const reporte = async () => axios.get("/Users/reporte", axiosCong());
+
+export const reporte =  async () =>{
+  try{
+    const res=await axios.get(
+      "/Notes/reporte", 
+    {
+      responseType: "blob",
+      ...axiosCong()
+    });
+  
+    if (res.status==200) {
+      console.log("respuesta");
+      console.log(res);
+      const pdfBlob = new Blob([res.data], { type: "application/pdf" });
+      const pdfUrl = URL.createObjectURL(pdfBlob);
+  
+      const link = document.createElement("a");
+      link.href = pdfUrl;
+      link.download = "reporte.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }else{
+      console.log("no fue 200"+res.status);
+
     }
-    return { ...row };
-  });
 
-  rows = updatedRows;
+  }catch(error){
+    console.log(error);
+  }
+  
 
-  return true;
-};
-export const remove = (data) => {
-  let cop = [];
-  rows.map((el) => {
-    if (el.ci != data.ci && el.subject != data.subject) return cop.push(el);
-  });
-  rows = [...cop];
-  return true;
 };

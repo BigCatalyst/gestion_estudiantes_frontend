@@ -34,13 +34,21 @@ const AddAltasBajas = ({ setKeyDataGrid, handleCloseAddM }) => {
 
   useEffect(() => {
     const getData = async () => {
-      const res = (await getAll()).map((item) => {
-        return item.ci;
-      });
-      setTimeout(() => {
-        setStudents(res);
-        setCI(res[0]);
-      }, 1000);
+      // const res = (await getAll()).map((item) => {
+      //   return item.ci;
+      // });
+      // setTimeout(() => {
+      //   setStudents(res);
+      //   setCI(res[0]);
+      // }, 1000);
+      const res = await getAll();
+      if (res) {
+        const stud = res.data.map((el) => {
+          return el.ci;
+        });
+        setStudents(stud);
+        setCI(stud[0]);
+      }
     };
 
     getData();

@@ -12,23 +12,31 @@ import {
 
 import { update } from "../../services/StudentsService";
 const UpdateStudents = ({ setKeyDataGrid, handleCloseUpdM, dataEdit }) => {
-  const { formData, formError, handdleChangeForm } = useFormValidator({
-    ci: dataEdit.ci,
-    address: dataEdit.address,
-    grade: dataEdit.grade,
-    last_name: dataEdit.last_name,
-    name: dataEdit.name,
-    regNumber: dataEdit.regNumber,
-    sex: dataEdit.sex,
-  });
+  const { formData, formError, handdleChangeForm, setFormError } =
+    useFormValidator({
+      ci: dataEdit.ci,
+      address: dataEdit.address,
+      grade: dataEdit.grade,
+      lastName: dataEdit.last_name,
+      name: dataEdit.name,
+      regNumber: dataEdit.regNumber,
+      sex: dataEdit.sex,
+    });
 
   const handdleSubmit = (event) => {
     event.preventDefault();
     //llamada a la api ok
-    const res = update({ ...formData, ci: dataEdit.ci });
-    if (res) {
-      setKeyDataGrid(Date.now());
-      handleCloseUpdM();
+    if (formData.ci.length !== 11) {
+      setFormError({ ...formError, ci: "EL CI debe tener 11 caracteres" });
+    }
+    if (formData.sex.length > 5) {
+      setFormError({ ...formError, sex: "EL Sexo debe tener 5 caracteres" });
+    } else {
+      const res = update({ ...formData, ci: dataEdit.ci });
+      if (res) {
+        setKeyDataGrid(Date.now());
+        handleCloseUpdM();
+      }
     }
   };
 
@@ -75,11 +83,11 @@ const UpdateStudents = ({ setKeyDataGrid, handleCloseUpdM, dataEdit }) => {
             </Select>
           </FormControl>
           <TextField
-            name="last_name"
+            name="lastName"
             onChange={handdleChangeForm}
-            value={formData.last_name}
-            error={formError.last_name ? true : false}
-            helperText={formError.last_name}
+            value={formData.lastName}
+            error={formError.lastName ? true : false}
+            helperText={formError.lastName}
             fullWidth
             label="Apellido"
             required

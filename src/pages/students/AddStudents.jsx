@@ -20,12 +20,11 @@ const AddStudents = ({ setKeyDataGrid, handleCloseAddM }) => {
       ci: "",
       address: "",
       grade: 7,
-      last_name: "",
+      lastName: "",
       name: "",
       regNumber: "",
       sex: "",
     });
-
 
   const handdleSubmit = (event) => {
     event.preventDefault();
@@ -33,10 +32,13 @@ const AddStudents = ({ setKeyDataGrid, handleCloseAddM }) => {
     //   setFormError({ ...formError, ci: "EL CI debe ser de 11 caracterres" });
     // }
 
-    console.log(formData);
-    console.log(formError);
-
-    if (!formError) {
+    if (formData.ci.length !== 11) {
+      setFormError({ ...formError, ci: "EL CI debe tener 11 caracteres" });
+    }
+    if (formData.sex.length > 5) {
+      setFormError({ ...formError, sex: "EL Sexo debe tener 5 caracteres" });
+    } else {
+      console.log(formData);
       const res = add(formData);
       if (res) {
         setKeyDataGrid(Date.now());
@@ -87,11 +89,11 @@ const AddStudents = ({ setKeyDataGrid, handleCloseAddM }) => {
             </Select>
           </FormControl>
           <TextField
-            name="last_name"
+            name="lastName"
             onChange={handdleChangeForm}
-            value={formData.last_name}
-            error={formError.last_name ? true : false}
-            helperText={formError.last_name}
+            value={formData.lastName}
+            error={formError.lastName ? true : false}
+            helperText={formError.lastName}
             fullWidth
             label="Apellido"
             required

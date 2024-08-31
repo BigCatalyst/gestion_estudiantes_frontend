@@ -7,7 +7,7 @@ const DeleteStudents = ({ setKeyDataGrid, handleCloseDelM, dataDel }) => {
     event.preventDefault();
 
     const res = remove(dataDel.ci);
-    console.log(res);
+
     if (res) {
       setKeyDataGrid(Date.now());
       handleCloseDelM();

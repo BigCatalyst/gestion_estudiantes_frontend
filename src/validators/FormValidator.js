@@ -2,10 +2,7 @@ import { useState } from "react";
 
 const useFormValidator = (initialState) => {
   const [formData, setFormData] = useState(initialState);
-  const [formError, setFormError] = useState({
-    username: "",
-    password: "",
-  });
+  const [formError, setFormError] = useState({});
   const handdleChangeForm = (event) => {
     const { name, value, checked } = event.target;
 
@@ -23,7 +20,7 @@ const useFormValidator = (initialState) => {
     else setFormError({ ...formError, [name]: "" });
   };
 
-  return { formData, formError, handdleChangeForm };
+  return { formData, formError, handdleChangeForm, setFormError };
 };
 
 export default useFormValidator;

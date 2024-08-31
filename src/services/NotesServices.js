@@ -1,3 +1,6 @@
+import axios from "axios";
+import { axiosCong } from "../config/env";
+
 let rows = [
   {
     apellidos: "Cardew",
@@ -119,11 +122,7 @@ let rows = [
 ];
 
 export const getAll = async (grade = 8) => {
-  const res = [];
-  rows.map((item) => {
-    if (item.grado === grade + "") res.push({ ...item });
-  });
-  return res;
+  return axios.get(`Notes/notasestudiantes/${grade}`, axiosCong());
 };
 export const add = (data) => {
   rows = [...rows, { ...data }];

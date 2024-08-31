@@ -33,7 +33,7 @@ let rows = [
 
 export const getAll = async () => {
   // rows;
-  return axios.get(URL_API+"/Students/findAll", axiosCong());
+  return axios.get(URL_API + "/Students/findAll", axiosCong());
 };
 export const add = (data) => {
   rows = [...rows, { ...data }];
@@ -65,8 +65,9 @@ export const remove = (ci) => {
 
 export const reportRequest = async () => {
   try {
-    const res = await axiosT.get(`/Notes/reporte`, {
+    const res = await axios.get(`/Students/reporte`, {
       responseType: "blob",
+      ...axiosCong(),
     });
     if (res) {
       console.log("respuesta");

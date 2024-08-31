@@ -46,10 +46,11 @@ const Subjects = () => {
     const getData = async () => {
       setLoading(true);
       const res = await getAll();
-      setTimeout(() => {
-        setData(res);
+      if (res) {
+        const dataRequest = res.data;
+        setData(dataRequest);
         setLoading(false);
-      }, 1000);
+      }
     };
 
     getData();

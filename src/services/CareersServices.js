@@ -1,3 +1,6 @@
+import axios from "axios";
+import { axiosCong, URL_API } from "../config/env";
+
 let rows = [
   {
     id: 1,
@@ -11,7 +14,10 @@ let rows = [
   },
 ];
 
-export const getAll = async () => rows;
+// export const getAll = async () => rows;
+export const getAll = async () => {
+  return axios.get(URL_API + "/Careers/findAll", axiosCong());
+};
 export const add = (data) => {
   let id = rows[rows.length - 1].id + 1;
   rows = [...rows, { ...data, id }];

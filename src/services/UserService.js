@@ -31,7 +31,7 @@ export const update = async (data) =>
 export const changepassword = async (data) =>
   axios.put("/Users/changepassword", data, axiosCong());
 export const remove = async (id) =>
-  axios.delete(`/Users/changepassword/${id}`, axiosCong());
+  axios.delete(`/Users/delete/${id}`, axiosCong());
 export const findid = async (id) => axios.get(`/Users/find/${id}`, axiosCong());
 
 // export const reporte = async () => axios.get("/Users/reporte", axiosCong());

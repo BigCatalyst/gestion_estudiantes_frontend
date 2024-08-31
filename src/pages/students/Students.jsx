@@ -11,9 +11,9 @@ import { BsPersonFillAdd } from "react-icons/bs";
 import DeleteStudents from "./DeleteStudents";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { dataGridStyles } from "../../components/mui/datagrid/DataGridStyle";
+import { FaFilePdf } from "react-icons/fa";
 
 const Students = () => {
-  const [request, setRequest] = useState(0);
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
   const [keyDataGrid, setKeyDataGrid] = useState(Date.now());
@@ -43,14 +43,12 @@ const Students = () => {
   const handleCloseDelM = () => setOpenDelM(false);
 
   useEffect(() => {
-    setRequest(1);
-  }, []);
-  useEffect(() => {
     //simulando el tiempo de respuesta de la api
     const getData = async () => {
       setLoading(true);
       let count = 0;
       const res = await getAll();
+      console.log(localStorage.getItem("token"));
       if (res) {
         const dataRequest = res.data;
         const dataT = dataRequest.map((item) => {
@@ -61,8 +59,8 @@ const Students = () => {
         setLoading(false);
       }
     };
-    if (request === 1) getData();
-  }, [keyDataGrid, request]);
+    getData();
+  }, [keyDataGrid]);
 
   const handleReportButtom = async () => {
     await reportRequest();
@@ -151,7 +149,7 @@ const Students = () => {
             </Button>
             <Button
               variant="contained"
-              startIcon={<BsPersonFillAdd />}
+              startIcon={<FaFilePdf />}
               onClick={handleReportButtom}
             >
               Reporte

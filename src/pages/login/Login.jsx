@@ -50,6 +50,8 @@ const Login = () => {
           //console.log(res.data.token);
           localStorage.setItem("isLogin", "1");
           localStorage.setItem("token", res.data.token);
+
+          
           navigate("/", { replace: true });
         }
       } catch (error) {

@@ -1,4 +1,5 @@
-import axiosT from "./AxiosConfig";
+import axios from "axios";
+import { axiosCong, URL_API } from "../config/env";
 
 let rows = [
   {
@@ -32,7 +33,7 @@ let rows = [
 
 export const getAll = async () => {
   // rows;
-  return axiosT.get("/Students/findAll");
+  return axios.get(URL_API+"/Students/findAll", axiosCong());
 };
 export const add = (data) => {
   rows = [...rows, { ...data }];

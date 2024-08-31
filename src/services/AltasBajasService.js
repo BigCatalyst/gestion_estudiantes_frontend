@@ -1,3 +1,6 @@
+import axios from "axios";
+import { axiosCong } from "../config/env";
+
 let rows = [
   {
     baja: false,
@@ -17,7 +20,8 @@ let rows = [
   },
 ];
 
-export const getAll = async () => rows;
+// export const getAll = async () => rows;
+export const getAll = async () => axios.get("/AltasBajas/findAll", axiosCong());
 export const add = (data) => {
   rows = [...rows, { ...data }];
   //console.log(rows);

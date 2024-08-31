@@ -121,7 +121,7 @@ const UpdateAltaBajas = ({ setKeyDataGrid, handleCloseUpdM, dataEdit }) => {
                 <DatePicker
                   name="fecha"
                   label="Fecha"
-                  value={dayjs()}
+                  value={fecha}
                   onChange={handleChange}
                   sx={{ ml: -1, width: "103%" }}
                 />

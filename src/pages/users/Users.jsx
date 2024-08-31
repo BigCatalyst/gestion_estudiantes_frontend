@@ -13,7 +13,7 @@ import UpdateUser from "./UpdateUser";
 import DeleteUser from "./DeleteUser";
 
 const Users = () => {
-  const [request, setRequest] = useState(0);
+  //const [request, setRequest] = useState(0);
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
   const [keyDataGrid, setKeyDataGrid] = useState(Date.now());
@@ -43,9 +43,6 @@ const Users = () => {
   const handleCloseDelM = () => setOpenDelM(false);
 
   useEffect(() => {
-    setRequest(1);
-  }, []);
-  useEffect(() => {
     //simulando el tiempo de respuesta de la api
     const getData = async () => {
       setLoading(true);
@@ -62,8 +59,8 @@ const Users = () => {
       }
     };
 
-    if (request === 1) getData();
-  }, [keyDataGrid, request]);
+    getData();
+  }, [keyDataGrid]);
 
   const actionsCol = {
     field: "actions",

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Page from "../../components/page/Page";
-import { getAll } from "../../services/AltasBajasService";
+import { getAll, reporte } from "../../services/AltasBajasService";
 import { Box, Button, IconButton } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { Delete, Edit } from "@mui/icons-material";
@@ -11,9 +11,9 @@ import { BsPersonFillAdd } from "react-icons/bs";
 import DeleteAltasBajas from "./DeleteAltasBajas";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { dataGridStyles } from "../../components/mui/datagrid/DataGridStyle";
+import { FaFilePdf } from "react-icons/fa";
 
 const AltasBajas = () => {
-  const [request, setRequest] = useState(0);
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
   const [keyDataGrid, setKeyDataGrid] = useState(Date.now());
@@ -46,10 +46,6 @@ const AltasBajas = () => {
   const handleCloseDelM = () => setOpenDelM(false);
 
   useEffect(() => {
-    setRequest(1);
-  }, []);
-
-  useEffect(() => {
     //simulando el tiempo de respuesta de la api
     const getData = async () => {
       setLoading(true);
@@ -69,8 +65,12 @@ const AltasBajas = () => {
         setLoading(false);
       }
     };
-    if (request === 1) getData();
-  }, [keyDataGrid, request]);
+    getData();
+  }, [keyDataGrid]);
+
+  const handleReportButtom = async () => {
+    await reporte();
+  };
 
   const actionsCol = {
     field: "actions",
@@ -139,6 +139,7 @@ const AltasBajas = () => {
             display="flex"
             justifyContent="flex-end"
             sx={{ mx: 10 }}
+            gap={2}
           >
             <Button
               variant="contained"
@@ -146,6 +147,13 @@ const AltasBajas = () => {
               onClick={handleOpenAddM}
             >
               Agregar
+            </Button>
+            <Button
+              variant="contained"
+              startIcon={<FaFilePdf />}
+              onClick={handleReportButtom}
+            >
+              Reporte
             </Button>
             <ModalMUI
               open={openAddM}

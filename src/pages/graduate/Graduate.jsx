@@ -6,6 +6,8 @@ import { Box, Button } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { dataGridStyles } from "../../components/mui/datagrid/DataGridStyle";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
+import { FaFilePdf } from "react-icons/fa";
+import { reporte } from "../../services/GraduateService";
 const Graduate = () => {
   //const [request, setRequest] = useState(0);
   const [data, setData] = useState();
@@ -34,7 +36,9 @@ const Graduate = () => {
     getData();
   }, [keyDataGrid]);
 
-  
+  const handleReportButtom = async () => {
+    await reporte();
+  };
 
   const columns = [
     { field: "id", headerName: "ID", width: 150 },
@@ -91,7 +95,7 @@ const Graduate = () => {
     <Page title="Graduado">
       <Box>
         <Grid container spacing={3} sx={{ mt: 1 }}>
-          {/* <Grid
+          <Grid
             xs={12}
             display="flex"
             justifyContent="flex-end"
@@ -99,44 +103,14 @@ const Graduate = () => {
           >
             <Button
               variant="contained"
-              startIcon={<BsPersonFillAdd />}
-              onClick={handleOpenAddM}
+              startIcon={<FaFilePdf />}
+              onClick={handleReportButtom}
             >
-              Agregar
+              Reporte
             </Button>
-            <ModalMUI
-              open={openAddM}
-              handleClose={handleCloseAddM}
-              title="Adicionar Usuario"
-            >
-              <AddUser
-                setKeyDataGrid={setKeyDataGrid}
-                handleCloseAddM={handleCloseAddM}
-              />
-            </ModalMUI>
-            <ModalMUI
-              open={openUpdM}
-              handleClose={handleCloseUpdM}
-              title="Actualizar Usuario"
-            >
-              <UpdateUser
-                setKeyDataGrid={setKeyDataGrid}
-                handleCloseUpdM={handleCloseUpdM}
-                dataEdit={dataEdit}
-              />
-            </ModalMUI>
-            <ModalMUI
-              open={openDelM}
-              handleClose={handleCloseDelM}
-              title="Eliminar Usuario"
-            >
-              <DeleteUser
-                setKeyDataGrid={setKeyDataGrid}
-                handleCloseDelM={handleCloseDelM}
-                dataDel={dataDel}
-              />
-            </ModalMUI>
-          </Grid> */}
+
+
+          </Grid>
           
           <Grid xs={12}>
             <DataGrid

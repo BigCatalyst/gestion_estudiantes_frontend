@@ -67,15 +67,16 @@ const UpdateAltaBajas = ({ setKeyDataGrid, handleCloseUpdM, dataEdit }) => {
     setFecha(newValue);
   };
 
-  const handdleSubmit = (event) => {
+  const handdleSubmit = async (event) => {
     event.preventDefault();
     //console.log(formData);
     //llamada a la api ok
     formData.date = fecha.toDate();
-    formData.ci = ci;
+    formData.ci = dataEdit.ci;
     console.log(formData);
-    const res = update(formData);
+    const res = await update(formData);
     if (res) {
+      console.log(res);
       setKeyDataGrid(Date.now());
       handleCloseUpdM();
     }

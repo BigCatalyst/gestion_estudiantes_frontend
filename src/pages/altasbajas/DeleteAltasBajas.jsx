@@ -2,10 +2,10 @@
 import { Button, Container, Grid } from "@mui/material";
 import { remove } from "../../services/AltasBajasService";
 const DeleteAltaBajas = ({ setKeyDataGrid, handleCloseDelM, dataDel }) => {
-  const handdleOk = (event) => {
+  const handdleOk = async (event) => {
     event.preventDefault();
 
-    const res = remove(dataDel.ci);
+    const res = await remove(dataDel.ci);
     console.log(res);
     if (res) {
       setKeyDataGrid(Date.now());

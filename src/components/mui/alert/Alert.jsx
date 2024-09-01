@@ -8,7 +8,7 @@ const Alert = ({ title, message, severity }) => {
   useEffect(() => {
     const timeOut = setTimeout(() => {
       setHidden(false);
-    }, 5000);
+    }, 10000);
     return () => {
       clearTimeout(timeOut);
     };

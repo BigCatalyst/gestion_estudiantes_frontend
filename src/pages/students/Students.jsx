@@ -57,8 +57,8 @@ const Students = () => {
     const getData = async () => {
       setLoading(true);
       let count = 0;
-      const res = await getAll();
-
+     const res = await getAll();
+ 
       if (res) {
         const dataRequest = res.data;
         const dataT = dataRequest.map((item) => {

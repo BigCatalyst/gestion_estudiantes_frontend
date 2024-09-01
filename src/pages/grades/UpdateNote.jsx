@@ -54,7 +54,7 @@ const UpdateNote = ({ setKeyDataGrid, handleCloseUpdM, dataEdit }) => {
 
           <TextField
             name="subjectId"
-            value={dataEdit.id_asignatura}
+            value={dataEdit.asignatura}
             fullWidth
             label="ID Asignatura"
             required
@@ -67,15 +67,15 @@ const UpdateNote = ({ setKeyDataGrid, handleCloseUpdM, dataEdit }) => {
             onChange={handdleChangeForm}
             value={formData.acs}
             error={
-              formError.acs || formData.acs > 10 || formData.acs < 0
+              formError.acs || formData.acs > 20 || formData.acs < 0
                 ? true
                 : false
             }
             helperText={
               formError.acs
                 ? formError.acs
-                : formData.acs > 10 || formData.acs < 0
-                ? "El campo Acs debe ser mayor que cero y menor que 10"
+                : formData.acs > 20 || formData.acs < 0
+                ? "El campo Acs debe ser mayor que cero y menor que 20"
                 : ""
             }
             fullWidth
@@ -88,8 +88,18 @@ const UpdateNote = ({ setKeyDataGrid, handleCloseUpdM, dataEdit }) => {
             name="tcp1"
             onChange={handdleChangeForm}
             value={formData.tcp1}
-            error={formError.tcp1 ? true : false}
-            helperText={formError.tcp1}
+            error={
+              formError.tcp1 || formData.tcp1 > 30 || formData.tcp1 < 0
+                ? true
+                : false
+            }
+            helperText={
+              formError.tcp1
+                ? formError.tcp1
+                : formData.tcp1 > 30 || formData.tcp1 < 0
+                ? "El campo Acs debe ser mayor que cero y menor que 30"
+                : ""
+            }
             fullWidth
             label="Tcp1"
             required
@@ -100,8 +110,18 @@ const UpdateNote = ({ setKeyDataGrid, handleCloseUpdM, dataEdit }) => {
             name="tcp2"
             onChange={handdleChangeForm}
             value={formData.tcp2}
-            error={formError.tcp2 ? true : false}
-            helperText={formError.tcp2}
+            error={
+              formError.tcp2 || formData.tcp2 > 30 || formData.tcp2 < 0
+                ? true
+                : false
+            }
+            helperText={
+              formError.tcp2
+                ? formError.tcp2
+                : formData.tcp2 > 30 || formData.tcp2 < 0
+                ? "El campo Acs debe ser mayor que cero y menor que 30"
+                : ""
+            }
             fullWidth
             label="Tcp2"
             required
@@ -112,8 +132,20 @@ const UpdateNote = ({ setKeyDataGrid, handleCloseUpdM, dataEdit }) => {
             name="finalExam"
             onChange={handdleChangeForm}
             value={formData.finalExam}
-            error={formError.finalExam ? true : false}
-            helperText={formError.finalExam}
+            error={
+              formError.finalExam ||
+              formData.finalExam > 50 ||
+              formData.finalExam < 0
+                ? true
+                : false
+            }
+            helperText={
+              formError.finalExam
+                ? formError.finalExam
+                : formData.finalExam > 50 || formData.exmane_final < 0
+                ? "El campo Acs debe ser mayor que cero y menor que 50"
+                : ""
+            }
             fullWidth
             label="Examen Final"
             required

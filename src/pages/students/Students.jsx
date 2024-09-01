@@ -12,7 +12,7 @@ import DeleteStudents from "./DeleteStudents";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { dataGridStyles } from "../../components/mui/datagrid/DataGridStyle";
 import { FaFilePdf } from "react-icons/fa";
-
+import  SubirDeGradoEstudiante from "./SubirDeGradoEstudiante"
 const Students = () => {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
@@ -41,6 +41,16 @@ const Students = () => {
     setDataDel(row);
   };
   const handleCloseDelM = () => setOpenDelM(false);
+
+
+  //Modal Delete Confirn
+  const [openMSubirGrado, setOpenMSubirGrado] = useState(false);
+  const [dataSubirGrado, setDataSubirGrado] = useState();
+  const handleOpenDelMSubirGrado = (row) => {
+    setOpenMSubirGrado(true);
+    setDataSubirGrado(row);
+  };
+  const handleCloseDelMSubirGrado = () => setOpenMSubirGrado(false);
 
   useEffect(() => {
     //simulando el tiempo de respuesta de la api
@@ -87,6 +97,12 @@ const Students = () => {
           onClick={() => handleOpenDelM(params.row)}
         >
           <Delete sx={{ color: "#e91e63" }} />
+        </IconButton>
+        <IconButton
+          aria-label="Subir de grado"
+          onClick={() => handleOpenDelMSubirGrado(params.row)}
+        >
+          <Delete sx={{ color: "yellow" }} />
         </IconButton>
       </div>
     ),
@@ -194,6 +210,18 @@ const Students = () => {
                 setKeyDataGrid={setKeyDataGrid}
                 handleCloseDelM={handleCloseDelM}
                 dataDel={dataDel}
+              />
+            </ModalMUI>
+
+            <ModalMUI
+              open={openMSubirGrado}
+              handleClose={handleCloseDelMSubirGrado}
+              title="Subir de grado"
+            >
+              <SubirDeGradoEstudiante
+                setKeyDataGrid={setKeyDataGrid}
+                handleCloseDelM={handleCloseDelMSubirGrado}
+                data_entrada={dataSubirGrado}
               />
             </ModalMUI>
           </Grid>

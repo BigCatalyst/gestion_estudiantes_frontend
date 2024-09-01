@@ -51,18 +51,23 @@ const Navigation = () => {
           </Link>
         </li>
         <li>
-          <Link to="/graduates">
-            <GiRibbonMedal /> Graduados
-          </Link>
-        </li>
-        <li>
           <Link to="/altas-bajas">
             <MdAppRegistration /> Altas/Bajas
           </Link>
         </li>
         <li>
+          <Link to="/graduates">
+            <GiRibbonMedal /> Graduados
+          </Link>
+        </li>
+        <li>
           <Link to="/notas-graduados">
             <GrNotes /> Notas de Graduados
+          </Link>
+        </li>
+        <li>
+          <Link to="/boleta">
+            <MdAppRegistration /> Boletas
           </Link>
         </li>
         <li>

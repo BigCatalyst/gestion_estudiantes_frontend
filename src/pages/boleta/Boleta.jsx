@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import Page from "../../components/page/Page";
-import { getAll,getAllBoleta, reporte } from "../../services/EstudianteCarreraService";
-import { Box, Button, IconButton } from "@mui/material";
+import {
+  getAll,
+  getAllBoleta,
+  reporte,
+} from "../../services/EstudianteCarreraService";
+import { Box, Button, Divider, IconButton } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { Delete, Edit } from "@mui/icons-material";
 import ModalMUI from "../../components/mui/modal/Modal";
@@ -42,23 +46,19 @@ const Boleta = () => {
   };
   const handleCloseDelM = () => setOpenDelM(false);
 
-
-  
-
   useEffect(() => {
     //simulando el tiempo de respuesta de la api
     const getData = async () => {
       setLoading(true);
       let count = 0;
 
-      
       const res = await getAllBoleta();
 
       if (res) {
         const dataRequest = res.data;
         const dataT = dataRequest.map((item) => {
           count++;
-          
+
           return { ...item, id: count };
         });
         setData(dataT);
@@ -71,7 +71,6 @@ const Boleta = () => {
   const handleReportButtom = async () => {
     await reporte();
   };
-  
 
   const actionsCol = {
     field: "actions",
@@ -92,38 +91,32 @@ const Boleta = () => {
         >
           <Delete sx={{ color: "#e91e63" }} />
         </IconButton>
-        
       </div>
     ),
   };
-
 
   const boletaColumna = {
     field: "carreras",
     //type: "actions",
     headerName: "Boleta",
     width: 160,
-    height:200,
     renderCell: (params) => {
-      
-      console.log(params.row)
-      const carreras=params.row.carreras;
+      console.log(params.row);
+      const carreras = params.row.carreras;
 
-
-      return (<>
-        <span>Esto falta</span>
-        {/* {carreras.map(v=>(<div  key={v+Date.now()}>
-             <span>{v}</span>
-        </div>))} */}
-      </>)
-
-    }
-      
-    ,
+      return (
+        <div style={{ display: "flex", flexDirection: "column", padding: 12 }}>
+          {carreras.map((carrera, index) => (
+            <div key={index} style={{ padding: 3 }}>
+              {carrera}
+              <Divider />
+            </div>
+          ))}
+        </div>
+      );
+    },
   };
 
-
-  
   const columns = [
     { field: "id", headerName: "ID", width: 150 },
     {
@@ -160,7 +153,7 @@ const Boleta = () => {
             >
               Reporte
             </Button>
-            
+
             <ModalMUI
               open={openAddM}
               handleClose={handleCloseAddM}
@@ -193,20 +186,18 @@ const Boleta = () => {
                 dataDel={dataDel}
               />
             </ModalMUI> */}
-
-            
           </Grid>
           <Grid xs={12}>
             <DataGrid
               key={keyDataGrid}
+              getRowHeight={() => "auto"}
+              getEstimatedRowHeight={() => 200}
               rows={data}
               columns={columns}
-              columnVisibilityModel={
-                {
-                  //id: false,
-                  //regNumber: false,
-                }
-              }
+              columnVisibilityModel={{
+                id: false,
+                //regNumber: false,
+              }}
               initialState={{
                 dataSet: "Commodity",
                 maxColumns: 6,
@@ -216,7 +207,14 @@ const Boleta = () => {
                 },
               }}
               pageSizeOptions={[5, 10, 25]}
-              sx={dataGridStyles}
+              sx={{
+                ...dataGridStyles,
+                "& .MuiDataGrid-cell": {
+                  textAlign: "left",
+                  display: "flex",
+                  alignItems: "center",
+                },
+              }}
               loading={loading}
               disableDensitySelector
               disableColumnSelector

@@ -11,6 +11,7 @@ const ProtectedRoutes = () => {
   }, []);
 
   useEffect(() => {
+    //Define las condiciones para desloguear al usuario
     if (isLogin === "-1") navigate("/login", { replace: true });
   }, [isLogin]);
 

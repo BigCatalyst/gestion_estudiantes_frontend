@@ -32,7 +32,7 @@ const AddNote = ({ setKeyDataGrid, handleCloseAddM }) => {
       const resS = await getAllAsignaturas();
       if (resS) {
         const subj = resS.data.map((el) => {
-          return el.id;
+          return el.id + "";
         });
         setSubjects(subj);
         setSubjectID(subj[0]);

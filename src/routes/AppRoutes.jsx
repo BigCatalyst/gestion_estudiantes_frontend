@@ -14,6 +14,7 @@ import ProtectedRoutes from "./ProtectedRoutes";
 import Logout from "../pages/logout/Logout";
 import Users from "../pages/users/Users";
 import NotasGraduados from "../pages/notasgraduados/NotasGraduados";
+import Boleta from "../pages/boleta/Boleta";
 
 const AppRoutes = () => {
   return (
@@ -32,6 +33,7 @@ const AppRoutes = () => {
           <Route path="notas-graduados" element={<NotasGraduados />} />
           <Route path="users" element={<Users />} />
           <Route path="logout" element={<Logout />} />
+          <Route path="boleta" element={<Boleta />} />
         </Route>
       </Route>
       <Route path="/login" element={<Login />} />

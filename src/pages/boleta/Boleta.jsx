@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
 import Page from "../../components/page/Page";
-import { getAll, reporte_escalafon, reportRequest } from "../../services/StudentsService";
+import { getAll,getAllBoleta, reporte } from "../../services/EstudianteCarreraService";
 import { Box, Button, IconButton } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { Delete, Edit } from "@mui/icons-material";
 import ModalMUI from "../../components/mui/modal/Modal";
-import AddStudents from "./AddStudents";
-import UpdateStudents from "./UpdateStudents";
+import AddBoleta from "./AddBoletas";
 import { BsPersonFillAdd } from "react-icons/bs";
-import DeleteStudents from "./DeleteStudents";
+
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { dataGridStyles } from "../../components/mui/datagrid/DataGridStyle";
 import { FaFilePdf } from "react-icons/fa";
-import  SubirDeGradoEstudiante from "./SubirDeGradoEstudiante"
-const Students = () => {
+import { Height } from "@mui/icons-material";
+
+const Boleta = () => {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
   const [keyDataGrid, setKeyDataGrid] = useState(Date.now());
@@ -43,14 +43,7 @@ const Students = () => {
   const handleCloseDelM = () => setOpenDelM(false);
 
 
-  //Modal Delete Confirn
-  const [openMSubirGrado, setOpenMSubirGrado] = useState(false);
-  const [dataSubirGrado, setDataSubirGrado] = useState();
-  const handleOpenDelMSubirGrado = (row) => {
-    setOpenMSubirGrado(true);
-    setDataSubirGrado(row);
-  };
-  const handleCloseDelMSubirGrado = () => setOpenMSubirGrado(false);
+  
 
   useEffect(() => {
     //simulando el tiempo de respuesta de la api
@@ -59,7 +52,7 @@ const Students = () => {
       let count = 0;
 
       
-      const res = await getAll();
+      const res = await getAllBoleta();
 
       if (res) {
         const dataRequest = res.data;
@@ -76,11 +69,9 @@ const Students = () => {
   }, [keyDataGrid]);
 
   const handleReportButtom = async () => {
-    await reportRequest();
+    await reporte();
   };
-  const handleReporteEscalfonButtom = async () => {
-    await reporte_escalafon();
-  };
+  
 
   const actionsCol = {
     field: "actions",
@@ -101,16 +92,35 @@ const Students = () => {
         >
           <Delete sx={{ color: "#e91e63" }} />
         </IconButton>
-        <IconButton
-          aria-label="Subir de grado"
-          onClick={() => handleOpenDelMSubirGrado(params.row)}
-        >
-          <Delete sx={{ color: "yellow" }} />
-        </IconButton>
+        
       </div>
     ),
   };
 
+
+  const boletaColumna = {
+    field: "carreras",
+    //type: "actions",
+    headerName: "Boleta",
+    width: 160,
+    height:200,
+    renderCell: (params) => {
+      
+      console.log(params.row)
+      const carreras=params.row.carreras;
+
+
+      return (<>
+        <span>Esto falta</span>
+        {/* {carreras.map(v=>(<div  key={v+Date.now()}>
+             <span>{v}</span>
+        </div>))} */}
+      </>)
+
+    }
+      
+    ,
+  };
 
 
   
@@ -121,41 +131,12 @@ const Students = () => {
       headerName: "CI",
       width: 150,
     },
-    {
-      field: "address",
-      headerName: "Address",
-      width: 150,
-    },
-    {
-      field: "grade",
-      headerName: "Grade",
-      width: 150,
-    },
-    {
-      field: "lastName",
-      headerName: "Last Name",
-      width: 150,
-    },
-    {
-      field: "name",
-      headerName: "Name",
-      width: 150,
-    },
-    {
-      field: "regNumber",
-      headerName: "Reg Number",
-      width: 150,
-    },
-    {
-      field: "sex",
-      headerName: "Sex",
-      width: 150,
-    },
+    { ...boletaColumna },
     { ...actionsCol },
   ];
 
   return (
-    <Page title="Estudiantes">
+    <Page title="Boletas">
       <Box>
         <Grid container spacing={3} sx={{ mt: 1 }}>
           <Grid
@@ -179,27 +160,21 @@ const Students = () => {
             >
               Reporte
             </Button>
-            <Button
-              variant="contained"
-              startIcon={<FaFilePdf />}
-              onClick={handleReporteEscalfonButtom}
-            >
-              Escalafón 
-            </Button>
+            
             <ModalMUI
               open={openAddM}
               handleClose={handleCloseAddM}
-              title="Adicionar Estudiante"
+              title="Adicionar Boleta"
             >
-              <AddStudents
+              <AddBoleta
                 setKeyDataGrid={setKeyDataGrid}
                 handleCloseAddM={handleCloseAddM}
               />
             </ModalMUI>
-            <ModalMUI
+            {/* <ModalMUI
               open={openUpdM}
               handleClose={handleCloseUpdM}
-              title="Actualizar Estudiante"
+              title="Actualizar Boleta"
             >
               <UpdateStudents
                 setKeyDataGrid={setKeyDataGrid}
@@ -210,26 +185,16 @@ const Students = () => {
             <ModalMUI
               open={openDelM}
               handleClose={handleCloseDelM}
-              title="Eliminar Estudiante"
+              title="Eliminar Boleta"
             >
               <DeleteStudents
                 setKeyDataGrid={setKeyDataGrid}
                 handleCloseDelM={handleCloseDelM}
                 dataDel={dataDel}
               />
-            </ModalMUI>
+            </ModalMUI> */}
 
-            <ModalMUI
-              open={openMSubirGrado}
-              handleClose={handleCloseDelMSubirGrado}
-              title="Subir de grado"
-            >
-              <SubirDeGradoEstudiante
-                setKeyDataGrid={setKeyDataGrid}
-                handleCloseDelM={handleCloseDelMSubirGrado}
-                data_entrada={dataSubirGrado}
-              />
-            </ModalMUI>
+            
           </Grid>
           <Grid xs={12}>
             <DataGrid
@@ -273,4 +238,4 @@ const Students = () => {
   );
 };
 
-export default Students;
+export default Boleta;

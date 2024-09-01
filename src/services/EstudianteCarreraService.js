@@ -2,23 +2,19 @@ import axios from "axios";
 
 import { axiosCong } from "../config/env";
 
+export const getAllBoleta = async () => axios.get("/StudentCareer/findAllBoletas", axiosCong());
 
 
 
-export const getAll = async () => axios.get("/Notagraduado/findAll", axiosCong());
-export const add =  async (data) => axios.post("/Notagraduado/create",data, axiosCong());
-export const update = async (data) => axios.put("/Notagraduado/update",data, axiosCong());
-export const changepassword = async (data) => axios.put("/Notagraduado/changepassword",data, axiosCong());
-export const remove =  async (id) => axios.delete(`/Notagraduado/changepassword/${id}`, axiosCong());
-export const findid =  async (id) => axios.get(`/Notagraduado/find/${id}`, axiosCong());
-
-
-// export const reporte = async () => axios.get("/Users/reporte", axiosCong());
-
+export const getAll = async () => axios.get("/StudentCareer/findAll", axiosCong());
+export const add = async (data) => axios.post("/StudentCareer/create",data, axiosCong());
+export const addBoleta = async (data) => axios.post("/StudentCareer/crearboleta",data, axiosCong());
+export const update = async (data) => axios.put("/StudentCareer/update",data, axiosCong());
+export const remove =  async (id) => axios.delete(`/StudentCareer/delete/${id}`, axiosCong());
 export const reporte =  async () =>{
   try{
     const res=await axios.get(
-      "/Notagraduado/reporte", 
+      "/StudentCareer/reporte", 
     {
       responseType: "blob",
       ...axiosCong()
@@ -44,6 +40,4 @@ export const reporte =  async () =>{
   }catch(error){
     console.log(error);
   }
-  
-
-};
+}

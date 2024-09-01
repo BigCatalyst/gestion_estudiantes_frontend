@@ -49,7 +49,6 @@ const Notes = ({ grade }) => {
       let count = 0;
       let res;
       const notes = await getAll(grade);
-      console.log(notes);
       if (notes) {
         res = notes.data.map((item) => {
           count++;

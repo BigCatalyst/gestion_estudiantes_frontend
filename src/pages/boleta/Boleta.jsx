@@ -1,10 +1,6 @@
 import { useEffect, useState } from "react";
 import Page from "../../components/page/Page";
-import {
-  getAll,
-  getAllBoleta,
-  reporte,
-} from "../../services/EstudianteCarreraService";
+import { getAllBoleta, reporte } from "../../services/EstudianteCarreraService";
 import { Box, Button, Divider, IconButton } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { Delete, Edit } from "@mui/icons-material";
@@ -15,7 +11,8 @@ import { BsPersonFillAdd } from "react-icons/bs";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { dataGridStyles } from "../../components/mui/datagrid/DataGridStyle";
 import { FaFilePdf } from "react-icons/fa";
-import { Height } from "@mui/icons-material";
+import UpdateBoletas from "./UpdateBoletas";
+import DeleteBoletas from "./DeleteBoletas";
 
 const Boleta = () => {
   const [data, setData] = useState();
@@ -164,12 +161,12 @@ const Boleta = () => {
                 handleCloseAddM={handleCloseAddM}
               />
             </ModalMUI>
-            {/* <ModalMUI
+            <ModalMUI
               open={openUpdM}
               handleClose={handleCloseUpdM}
               title="Actualizar Boleta"
             >
-              <UpdateStudents
+              <UpdateBoletas
                 setKeyDataGrid={setKeyDataGrid}
                 handleCloseUpdM={handleCloseUpdM}
                 dataEdit={dataEdit}
@@ -180,12 +177,12 @@ const Boleta = () => {
               handleClose={handleCloseDelM}
               title="Eliminar Boleta"
             >
-              <DeleteStudents
+              <DeleteBoletas
                 setKeyDataGrid={setKeyDataGrid}
                 handleCloseDelM={handleCloseDelM}
                 dataDel={dataDel}
               />
-            </ModalMUI> */}
+            </ModalMUI>
           </Grid>
           <Grid xs={12}>
             <DataGrid

@@ -169,7 +169,7 @@ const UpdateAltaBajas = ({ setKeyDataGrid, handleCloseUpdM, dataEdit }) => {
             type="submit"
             sx={{ mb: 2 }}
           >
-            Adicionar
+            Actualizar
           </Button>
         </form>
       </Container>

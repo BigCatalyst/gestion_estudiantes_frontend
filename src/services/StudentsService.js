@@ -11,7 +11,9 @@ export const update = async (data) =>
   axios.put("/Students/update", data, axiosCong());
 export const remove = async (id) =>
   axios.delete(`/Students/delete/${id}`, axiosCong());
-export const subir_de_grado  = async (data) => axios.post("/Students/subirdegrado",data, axiosCong());
+
+export const subir_de_grado = async (data) =>
+  axios.post("/Students/subirdegrado", data, axiosCong());
 
 export const reportRequest = async () => {
   try {

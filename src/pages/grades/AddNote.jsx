@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 import useFormValidator from "../../validators/FormValidator";
 import { Autocomplete, Button, Container, TextField } from "@mui/material";
@@ -15,6 +16,8 @@ const AddNote = ({ setKeyDataGrid, handleCloseAddM }) => {
   const [subjects, setSubjects] = useState();
   const [subjectId, setSubjectID] = useState();
 
+  const [mapAsignaturas, setmapAsignaturas] = useState(new Map());
+
   const [showAlert, setShowAlert] = useState(false);
   const [keyAlert, setKeyAlert] = useState(Date.now());
 
@@ -30,10 +33,14 @@ const AddNote = ({ setKeyDataGrid, handleCloseAddM }) => {
       }
 
       const resS = await getAllAsignaturas();
+      const map = new Map();
       if (resS) {
+        console.log(resS);
         const subj = resS.data.map((el) => {
-          return el.id;
+          map.set(el.name, el.id);
+          return el.name;
         });
+        setmapAsignaturas(map);
         setSubjects(subj);
         setSubjectID(subj[0]);
       }
@@ -58,14 +65,11 @@ const AddNote = ({ setKeyDataGrid, handleCloseAddM }) => {
     const data = {
       notesPK: {
         studentCi,
-        subjectId,
+        subjectId: mapAsignaturas.get(subjectId),
       },
       ...formData,
     };
 
-    //console.log(data);
-    // formData.date = fecha.toDate();
-    // formData.ci = ci;
     try {
       const res = await add(data);
       if (res) {
@@ -123,59 +127,19 @@ const AddNote = ({ setKeyDataGrid, handleCloseAddM }) => {
             )}
           />
 
-          {/* <TextField
-            name="nombre"
-            onChange={handdleChangeForm}
-            value={formData.nombre}
-            error={formError.nombre ? true : false}
-            helperText={formError.nombre}
-            fullWidth
-            label="Nombre"
-            required
-            sx={{ mb: 3 }}
-          ></TextField>
-
-          <TextField
-            name="apellidos"
-            onChange={handdleChangeForm}
-            value={formData.apellidos}
-            error={formError.apellidos ? true : false}
-            helperText={formError.apellidos}
-            fullWidth
-            label="Apellidos"
-            required
-            sx={{ mb: 3 }}
-          ></TextField>
-
-          <FormControl fullWidth sx={{ mb: 3 }}>
-            <InputLabel id="gradeLabel">Grado</InputLabel>
-            <Select
-              labelId="gradeLabel"
-              id="grade"
-              name="grade"
-              value={formData.grade}
-              label="Grado"
-              onChange={handdleChangeForm}
-            >
-              <MenuItem value={7}>7</MenuItem>
-              <MenuItem value={8}>8</MenuItem>
-              <MenuItem value={9}>9</MenuItem>
-            </Select>
-          </FormControl> */}
-
           <TextField
             name="acs"
             onChange={handdleChangeForm}
             value={formData.acs}
             error={
-              formError.acs || formData.acs > 10 || formData.acs < 0
+              formError.acs || formData.acs > 20 || formData.acs < 0
                 ? true
                 : false
             }
             helperText={
               formError.acs
                 ? formError.acs
-                : formData.acs > 10 || formData.acs < 0
+                : formData.acs > 20 || formData.acs < 0
                 ? "El campo Acs debe ser mayor que cero y menor que 10"
                 : ""
             }
@@ -189,8 +153,18 @@ const AddNote = ({ setKeyDataGrid, handleCloseAddM }) => {
             name="tcp1"
             onChange={handdleChangeForm}
             value={formData.tcp1}
-            error={formError.tcp1 ? true : false}
-            helperText={formError.tcp1}
+            error={
+              formError.tcp1 || formData.tcp1 > 30 || formData.tcp1 < 0
+                ? true
+                : false
+            }
+            helperText={
+              formError.tcp1
+                ? formError.tcp1
+                : formData.tcp1 > 30 || formData.tcp1 < 0
+                ? "El campo Acs debe ser mayor que cero y menor que 30"
+                : ""
+            }
             fullWidth
             label="Tcp1"
             required
@@ -201,8 +175,18 @@ const AddNote = ({ setKeyDataGrid, handleCloseAddM }) => {
             name="tcp2"
             onChange={handdleChangeForm}
             value={formData.tcp2}
-            error={formError.tcp2 ? true : false}
-            helperText={formError.tcp2}
+            error={
+              formError.tcp2 || formData.tcp2 > 30 || formData.tcp2 < 0
+                ? true
+                : false
+            }
+            helperText={
+              formError.tcp2
+                ? formError.tcp2
+                : formData.tcp2 > 30 || formData.tcp2 < 0
+                ? "El campo Acs debe ser mayor que cero y menor que 30"
+                : ""
+            }
             fullWidth
             label="Tcp2"
             required
@@ -212,9 +196,21 @@ const AddNote = ({ setKeyDataGrid, handleCloseAddM }) => {
           <TextField
             name="finalExam"
             onChange={handdleChangeForm}
-            value={formData.exmane_final}
-            error={formError.exmane_final ? true : false}
-            helperText={formError.exmane_final}
+            value={formData.finalExam}
+            error={
+              formError.finalExam ||
+              formData.finalExam > 50 ||
+              formData.finalExam < 0
+                ? true
+                : false
+            }
+            helperText={
+              formError.finalExam
+                ? formError.finalExam
+                : formData.finalExam > 50 || formData.exmane_final < 0
+                ? "El campo Acs debe ser mayor que cero y menor que 50"
+                : ""
+            }
             fullWidth
             label="Examen Final"
             required

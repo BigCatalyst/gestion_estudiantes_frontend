@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import useFormValidator from "../../validators/FormValidator";
 import { Autocomplete, Button, Container, TextField } from "@mui/material";
 
@@ -9,7 +8,7 @@ import { useEffect, useState } from "react";
 import Alert from "../../components/mui/alert/Alert.jsx";
 import { addSTR } from "../../services/EstudianteCarreraService.js";
 
-const AddBoleta = ({ setKeyDataGrid, handleCloseAddM }) => {
+const UpdateBoletas = ({ setKeyDataGrid, handleCloseUpdM, dataEdit }) => {
   const [students, setStudents] = useState();
   const [ci, setCI] = useState();
 
@@ -93,10 +92,10 @@ const AddBoleta = ({ setKeyDataGrid, handleCloseAddM }) => {
     }
     const data = {
       ci,
-      carreras: [...a],
+      carreras: a,
     };
-    console.log(JSON.stringify(data));
-    const res = await addSTR(JSON.stringify(data));
+    console.log(data);
+    const res = await addSTR(formData);
     if (res) {
       setKeyDataGrid(Date.now());
       handleCloseAddM();
@@ -262,4 +261,4 @@ const AddBoleta = ({ setKeyDataGrid, handleCloseAddM }) => {
   );
 };
 
-export default AddBoleta;
+export default UpdateBoletas;

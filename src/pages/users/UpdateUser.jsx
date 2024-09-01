@@ -67,33 +67,6 @@ const UpdateUser = ({ setKeyDataGrid, handleCloseUpdM, dataEdit }) => {
             sx={{ mb: 3 }}
             disabled
           ></TextField>
-          {/* <TextField
-            name="password"
-            onChange={handdleChangeForm}
-            value={formData.password}
-            error={formError.password ? true : false}
-            helperText={formError.password}
-            fullWidth
-            label="Contraseña"
-            type={showPassword ? "text" : "password"}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                    edge="end"
-                    sx={{ marginRight: 1 }}
-                  >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-            required
-            sx={{ mb: 3 }}
-          ></TextField> */}
           <TextField
             name="identificacion"
             onChange={handdleChangeForm}

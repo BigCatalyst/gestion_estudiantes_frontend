@@ -3,10 +3,10 @@ import { Button, Container, Grid } from "@mui/material";
 import { remove } from "../../services/CareersServices";
 
 const DeleteCareers = ({ setKeyDataGrid, handleCloseDelM, dataDel }) => {
-  const handdleOk = (event) => {
+  const handdleOk = async (event) => {
     event.preventDefault();
 
-    const res = remove(dataDel.id);
+    const res = await remove(dataDel.id);
     console.log(res);
     if (res) {
       setKeyDataGrid(Date.now());

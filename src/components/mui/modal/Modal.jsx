@@ -1,5 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
-import { Box, Divider, Modal } from "@mui/material";
+import { Close } from "@mui/icons-material";
+import { Box, Divider, IconButton, Modal } from "@mui/material";
 
 const ModalMUI = ({ open, handleClose, title, children }) => {
   const style = {
@@ -13,6 +15,7 @@ const ModalMUI = ({ open, handleClose, title, children }) => {
     p: 4,
     borderRadius: 3,
   };
+
   return (
     <Modal
       open={open}
@@ -41,6 +44,14 @@ const ModalMUI = ({ open, handleClose, title, children }) => {
           </div>
         )}
         <div>{children}</div>
+        {!(title + "").includes("Eliminar") && (
+          <IconButton
+            style={{ position: "absolute", top: "7px", right: "7px" }}
+            onClick={handleClose}
+          >
+            <Close />
+          </IconButton>
+        )}
       </Box>
     </Modal>
   );

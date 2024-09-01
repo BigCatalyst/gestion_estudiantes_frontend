@@ -34,13 +34,6 @@ const AddAltasBajas = ({ setKeyDataGrid, handleCloseAddM }) => {
 
   useEffect(() => {
     const getData = async () => {
-      // const res = (await getAll()).map((item) => {
-      //   return item.ci;
-      // });
-      // setTimeout(() => {
-      //   setStudents(res);
-      //   setCI(res[0]);
-      // }, 1000);
       const res = await getAll();
       if (res) {
         const stud = res.data.map((el) => {
@@ -71,13 +64,11 @@ const AddAltasBajas = ({ setKeyDataGrid, handleCloseAddM }) => {
     setFecha(newValue);
   };
 
-  const handdleSubmit = (event) => {
+  const handdleSubmit = async (event) => {
     event.preventDefault();
-    //console.log(formData);
-    //llamada a la api ok
     formData.date = fecha.toDate();
     formData.ci = ci;
-    const res = add(formData);
+    const res = await add(formData);
     if (res) {
       setKeyDataGrid(Date.now());
       handleCloseAddM();

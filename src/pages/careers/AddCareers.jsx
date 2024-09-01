@@ -1,10 +1,6 @@
 /* eslint-disable react/prop-types */
 import useFormValidator from "../../validators/FormValidator";
-import {
-  Button,
-  Container,
-  TextField,
-} from "@mui/material";
+import { Button, Container, TextField } from "@mui/material";
 
 import { add } from "../../services/CareersServices";
 
@@ -14,11 +10,11 @@ const AddCareers = ({ setKeyDataGrid, handleCloseAddM }) => {
     name: "",
   });
 
-  const handdleSubmit = (event) => {
+  const handdleSubmit = async (event) => {
     event.preventDefault();
     //console.log(formData);
     //llamada a la api ok
-    const res = add(formData);
+    const res = await add(formData);
     if (res) {
       setKeyDataGrid(Date.now());
       handleCloseAddM();

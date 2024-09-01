@@ -4,7 +4,7 @@ import "./Page.css";
 
 const Page = ({ children, title }) => {
   return (
-    <Box className="page" sx={{}}>
+    <Box className="page">
       <h1>{title}</h1>
       {children}
     </Box>

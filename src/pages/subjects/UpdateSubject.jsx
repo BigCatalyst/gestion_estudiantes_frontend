@@ -32,12 +32,12 @@ const UpdateSubject = ({ setKeyDataGrid, handleCloseUpdM, dataEdit }) => {
     tcp2: dataEdit.tcp2,
   });
 
-  const handdleSubmit = (event) => {
+  const handdleSubmit = async (event) => {
     event.preventDefault();
     //console.log(formData);
     //llamada a la api ok
     formData.id = dataEdit.id;
-    const res = update(formData);
+    const res = await update(formData);
     if (res) {
       setKeyDataGrid(Date.now());
       handleCloseUpdM();

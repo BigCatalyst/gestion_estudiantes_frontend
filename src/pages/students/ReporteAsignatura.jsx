@@ -87,7 +87,7 @@ const ReporteAsignatura = ({
             type="submit"
             sx={{ mb: 2 }}
           >
-            Subir de Grado
+            Reporte
           </Button>
         </form>
       </Container>

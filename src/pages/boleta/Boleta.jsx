@@ -30,7 +30,6 @@ const Boleta = () => {
   const handleOpenUpdM = (row) => {
     setDataEdit(row);
     setOpenUpdM(true);
-    console.log(row);
   };
   const handleCloseUpdM = () => setOpenUpdM(false);
 
@@ -98,7 +97,6 @@ const Boleta = () => {
     headerName: "Boleta",
     width: 160,
     renderCell: (params) => {
-      console.log(params.row);
       const carreras = params.row.carreras;
 
       return (

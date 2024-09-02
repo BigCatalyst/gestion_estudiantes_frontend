@@ -18,6 +18,7 @@ import { dataGridStyles } from "../../components/mui/datagrid/DataGridStyle";
 import { FaFilePdf, FaSortAmountUpAlt } from "react-icons/fa";
 import SubirDeGradoEstudiante from "./SubirDeGradoEstudiante";
 import { FaArrowUp91 } from "react-icons/fa6";
+import ReporteAsignatura from "./ReporteAsignatura";
 const Students = () => {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
@@ -55,6 +56,17 @@ const Students = () => {
     setDataSubirGrado(row);
   };
   const handleCloseDelMSubirGrado = () => setOpenMSubirGrado(false);
+
+
+  //Modal Delete Confirn
+  const [openMReporteAsignatura, setOpenMReporteAsignatura] = useState(false);
+  const [dataReporteAsignatura, setDataReporteAsignatura] = useState();
+  const handleOpenDelMReporteAsignatura = (row) => {
+    setOpenMReporteAsignatura(true);
+    setDataReporteAsignatura(row);
+  };
+  const handleCloseDelMReporteAsignatura = () => setOpenMReporteAsignatura(false);
+
 
   useEffect(() => {
     //simulando el tiempo de respuesta de la api
@@ -182,17 +194,24 @@ const Students = () => {
             <Button
               variant="contained"
               startIcon={<FaFilePdf />}
+              onClick={handleOpenDelMReporteAsignatura}
+            >
+              Reporte Asignatura
+            </Button>
+            <Button
+              variant="contained"
+              startIcon={<FaFilePdf />}
               onClick={handleReporteEscalfonButtom}
             >
               Escalafón
             </Button>
-            <Button
+            {/* <Button
               variant="contained"
               startIcon={<FaSortAmountUpAlt />}
               // onClick={handleReporteEscalfonButtom}
             >
               Subir de Grado
-            </Button>
+            </Button> */}
             <ModalMUI
               open={openAddM}
               handleClose={handleCloseAddM}
@@ -237,6 +256,19 @@ const Students = () => {
                 data_entrada={dataSubirGrado}
               />
             </ModalMUI>
+
+            <ModalMUI
+              open={openMReporteAsignatura}
+              handleClose={handleCloseDelMReporteAsignatura}
+              title="Reporte Asignatura"
+            >
+              <ReporteAsignatura
+                setKeyDataGrid={setKeyDataGrid}
+                handleCloseDelM={handleCloseDelMReporteAsignatura}
+                data_entrada={dataReporteAsignatura}
+              />
+            </ModalMUI>
+
           </Grid>
           <Grid xs={12}>
             <DataGrid

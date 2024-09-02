@@ -1,4 +1,5 @@
-import useFormValidator from "../../validators/FormValidator";
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react/prop-types */
 import { Autocomplete, Button, Container, TextField } from "@mui/material";
 
 import { getAll } from "../../services/StudentsService.js";
@@ -6,7 +7,7 @@ import { getAll as getAllCarreras } from "../../services/CareersServices.js";
 
 import { useEffect, useState } from "react";
 import Alert from "../../components/mui/alert/Alert.jsx";
-import { addSTR } from "../../services/EstudianteCarreraService.js";
+import { ubdateboletastr } from "../../services/EstudianteCarreraService.js";
 
 const UpdateBoletas = ({ setKeyDataGrid, handleCloseUpdM, dataEdit }) => {
   const [students, setStudents] = useState();
@@ -50,20 +51,6 @@ const UpdateBoletas = ({ setKeyDataGrid, handleCloseUpdM, dataEdit }) => {
     getData();
   }, []);
 
-  const { formData, formError, handdleChangeForm } = useFormValidator({
-    ci: "",
-    carrera1: "",
-    carrera2: "",
-    carrera3: "",
-    carrera4: "",
-    carrera5: "",
-    carrera6: "",
-    carrera7: "",
-    carrera8: "",
-    carrera9: "",
-    carrera10: "",
-  });
-
   const handdleSubmit = async (event) => {
     event.preventDefault();
     let a = [
@@ -78,6 +65,12 @@ const UpdateBoletas = ({ setKeyDataGrid, handleCloseUpdM, dataEdit }) => {
       carrera9,
       carrera10,
     ];
+
+    for (let index = 0; index < a.length; index++) {
+      const element = a[index];
+      if (element === undefined) a[index] = dataEdit.carreras[index];
+    }
+
     let b = [];
     for (let index = 0; index < a.length; index++) {
       const element = a[index];
@@ -92,13 +85,13 @@ const UpdateBoletas = ({ setKeyDataGrid, handleCloseUpdM, dataEdit }) => {
     }
     const data = {
       ci,
-      carreras: a,
+      carreras: [...a],
     };
     console.log(data);
-    const res = await addSTR(formData);
+    const res = await ubdateboletastr(JSON.stringify(data));
     if (res) {
       setKeyDataGrid(Date.now());
-      handleCloseAddM();
+      handleCloseUpdM();
     }
   };
 
@@ -120,10 +113,13 @@ const UpdateBoletas = ({ setKeyDataGrid, handleCloseUpdM, dataEdit }) => {
             onChange={(event, newValue) => {
               setCI(newValue);
             }}
+            value={dataEdit.ci}
+            inputValue={dataEdit.ci}
             sx={{ width: "100%", mb: 2 }}
             renderInput={(params) => (
               <TextField required fullWidth {...params} label="CI" />
             )}
+            disabled
           />
 
           <Autocomplete
@@ -132,6 +128,7 @@ const UpdateBoletas = ({ setKeyDataGrid, handleCloseUpdM, dataEdit }) => {
             onChange={(event, newValue) => {
               setcarrera1(newValue);
             }}
+            defaultValue={dataEdit.carreras[0]}
             sx={{ width: "100%", mb: 2 }}
             renderInput={(params) => (
               <TextField required fullWidth {...params} label="Opción 1" />
@@ -148,6 +145,7 @@ const UpdateBoletas = ({ setKeyDataGrid, handleCloseUpdM, dataEdit }) => {
             renderInput={(params) => (
               <TextField required fullWidth {...params} label="Opción 2" />
             )}
+            defaultValue={dataEdit.carreras[1]}
           />
 
           <Autocomplete
@@ -160,6 +158,7 @@ const UpdateBoletas = ({ setKeyDataGrid, handleCloseUpdM, dataEdit }) => {
             renderInput={(params) => (
               <TextField required fullWidth {...params} label="Opción 3" />
             )}
+            defaultValue={dataEdit.carreras[2]}
           />
 
           <Autocomplete
@@ -172,6 +171,7 @@ const UpdateBoletas = ({ setKeyDataGrid, handleCloseUpdM, dataEdit }) => {
             renderInput={(params) => (
               <TextField required fullWidth {...params} label="Opción 4" />
             )}
+            defaultValue={dataEdit.carreras[3]}
           />
 
           <Autocomplete
@@ -184,6 +184,7 @@ const UpdateBoletas = ({ setKeyDataGrid, handleCloseUpdM, dataEdit }) => {
             renderInput={(params) => (
               <TextField required fullWidth {...params} label="Opción 5" />
             )}
+            defaultValue={dataEdit.carreras[4]}
           />
 
           <Autocomplete
@@ -196,6 +197,7 @@ const UpdateBoletas = ({ setKeyDataGrid, handleCloseUpdM, dataEdit }) => {
             renderInput={(params) => (
               <TextField required fullWidth {...params} label="Opción 6" />
             )}
+            defaultValue={dataEdit.carreras[5]}
           />
 
           <Autocomplete
@@ -208,6 +210,7 @@ const UpdateBoletas = ({ setKeyDataGrid, handleCloseUpdM, dataEdit }) => {
             renderInput={(params) => (
               <TextField required fullWidth {...params} label="Opción 7" />
             )}
+            defaultValue={dataEdit.carreras[6]}
           />
 
           <Autocomplete
@@ -220,6 +223,7 @@ const UpdateBoletas = ({ setKeyDataGrid, handleCloseUpdM, dataEdit }) => {
             renderInput={(params) => (
               <TextField required fullWidth {...params} label="Opción 8" />
             )}
+            defaultValue={dataEdit.carreras[7]}
           />
 
           <Autocomplete
@@ -232,6 +236,7 @@ const UpdateBoletas = ({ setKeyDataGrid, handleCloseUpdM, dataEdit }) => {
             renderInput={(params) => (
               <TextField required fullWidth {...params} label="Opción 9" />
             )}
+            defaultValue={dataEdit.carreras[8]}
           />
 
           <Autocomplete
@@ -244,6 +249,7 @@ const UpdateBoletas = ({ setKeyDataGrid, handleCloseUpdM, dataEdit }) => {
             renderInput={(params) => (
               <TextField required fullWidth {...params} label="Opción 10" />
             )}
+            defaultValue={dataEdit.carreras[9]}
           />
 
           <Button
@@ -253,7 +259,7 @@ const UpdateBoletas = ({ setKeyDataGrid, handleCloseUpdM, dataEdit }) => {
             type="submit"
             sx={{ mb: 2 }}
           >
-            Adicionar
+            Actualizar
           </Button>
         </form>
       </Container>

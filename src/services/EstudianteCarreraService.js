@@ -15,6 +15,8 @@ export const addBoleta = async (data) =>
   axios.post("/StudentCareer/crearboleta", data, axiosCong());
 export const update = async (data) =>
   axios.put("/StudentCareer/update", data, axiosCong());
+export const ubdateboletastr = async (data) =>
+  axios.put("/StudentCareer/ubdateboletastr", data, axiosCong());
 export const remove = async (id) =>
   axios.delete(`/StudentCareer/delete/${id}`, axiosCong());
 export const reporte = async () => {

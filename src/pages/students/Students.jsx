@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import Page from "../../components/page/Page";
-import { getAll, reporte_escalafon, reportRequest } from "../../services/StudentsService";
+import {
+  getAll,
+  reporte_escalafon,
+  reportRequest,
+} from "../../services/StudentsService";
 import { Box, Button, IconButton } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { Delete, Edit } from "@mui/icons-material";
@@ -11,8 +15,9 @@ import { BsPersonFillAdd } from "react-icons/bs";
 import DeleteStudents from "./DeleteStudents";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { dataGridStyles } from "../../components/mui/datagrid/DataGridStyle";
-import { FaFilePdf } from "react-icons/fa";
-import  SubirDeGradoEstudiante from "./SubirDeGradoEstudiante"
+import { FaFilePdf, FaSortAmountUpAlt } from "react-icons/fa";
+import SubirDeGradoEstudiante from "./SubirDeGradoEstudiante";
+import { FaArrowUp91 } from "react-icons/fa6";
 const Students = () => {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
@@ -42,7 +47,6 @@ const Students = () => {
   };
   const handleCloseDelM = () => setOpenDelM(false);
 
-
   //Modal Delete Confirn
   const [openMSubirGrado, setOpenMSubirGrado] = useState(false);
   const [dataSubirGrado, setDataSubirGrado] = useState();
@@ -58,14 +62,13 @@ const Students = () => {
       setLoading(true);
       let count = 0;
 
-     const res = await getAll();
- 
+      const res = await getAll();
 
       if (res) {
         const dataRequest = res.data;
         const dataT = dataRequest.map((item) => {
           count++;
-          
+
           return { ...item, id: count };
         });
         setData(dataT);
@@ -105,15 +108,12 @@ const Students = () => {
           aria-label="Subir de grado"
           onClick={() => handleOpenDelMSubirGrado(params.row)}
         >
-          <Delete sx={{ color: "yellow" }} />
+          <FaArrowUp91 />
         </IconButton>
       </div>
     ),
   };
 
-
-
-  
   const columns = [
     { field: "id", headerName: "ID", width: 150 },
     {
@@ -184,7 +184,14 @@ const Students = () => {
               startIcon={<FaFilePdf />}
               onClick={handleReporteEscalfonButtom}
             >
-              Escalafón 
+              Escalafón
+            </Button>
+            <Button
+              variant="contained"
+              startIcon={<FaSortAmountUpAlt />}
+              // onClick={handleReporteEscalfonButtom}
+            >
+              Subir de Grado
             </Button>
             <ModalMUI
               open={openAddM}

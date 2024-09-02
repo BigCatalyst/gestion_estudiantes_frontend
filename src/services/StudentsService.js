@@ -3,6 +3,8 @@ import axios from "axios";
 import { axiosCong } from "../config/env";
 
 export const getAll = async () => axios.get("/Students/findAll", axiosCong());
+export const getEscalafon = async () =>
+  axios.get("/Students/escalafon", axiosCong());
 export const getAllByGrade = async (grade = 7) =>
   axios.get(`/Students/findAll/${grade}`, axiosCong());
 export const add = async (data) =>
@@ -42,6 +44,29 @@ export const reportRequest = async () => {
 export const reporte_escalafon = async () => {
   try {
     const res = await axios.get(`/Students/reporte/escalafon`, {
+      responseType: "blob",
+      ...axiosCong(),
+    });
+    if (res) {
+      console.log("respuesta");
+      console.log(res);
+      const pdfBlob = new Blob([res.data], { type: "application/pdf" });
+      const pdfUrl = URL.createObjectURL(pdfBlob);
+
+      const link = document.createElement("a");
+      link.href = pdfUrl;
+      link.download = "reporte.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const realizarotorgamiento = async () => {
+  try {
+    const res = await axios.get(`/Students/realizarotorgamiento`, {
       responseType: "blob",
       ...axiosCong(),
     });

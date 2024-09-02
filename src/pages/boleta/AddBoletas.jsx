@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import useFormValidator from "../../validators/FormValidator";
 import { Autocomplete, Button, Container, TextField } from "@mui/material";
 
 import { getAll } from "../../services/StudentsService.js";
@@ -50,20 +49,6 @@ const AddBoleta = ({ setKeyDataGrid, handleCloseAddM }) => {
 
     getData();
   }, []);
-
-  const { formData, formError, handdleChangeForm } = useFormValidator({
-    ci: "",
-    carrera1: "",
-    carrera2: "",
-    carrera3: "",
-    carrera4: "",
-    carrera5: "",
-    carrera6: "",
-    carrera7: "",
-    carrera8: "",
-    carrera9: "",
-    carrera10: "",
-  });
 
   const handdleSubmit = async (event) => {
     event.preventDefault();

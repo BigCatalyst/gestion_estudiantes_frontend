@@ -1,24 +1,20 @@
-/* eslint-disable react/prop-types */
 import { Button, Container, Grid } from "@mui/material";
-import { remove } from "../../services/EstudianteCarreraService";
+import { realizarotorgamiento } from "../../services/StudentsService";
 
-const DeleteBoletas = ({ setKeyDataGrid, handleCloseDelM, dataDel }) => {
+// eslint-disable-next-line react/prop-types
+const ConfirmarOtorgamiento = ({ handleCloseOtorgM }) => {
   const handdleOk = async (event) => {
     event.preventDefault();
 
-    const res = await remove(dataDel.ci);
+    await realizarotorgamiento();
 
-    if (res) {
-      setKeyDataGrid(Date.now());
-      handleCloseDelM();
-    }
+    handleCloseOtorgM();
   };
-
   return (
     <div style={{ maxHeight: 300 }}>
       <Container>
         <Grid display="flex" gap={2} flexDirection="column">
-          <p>¿Está seguro que desea eliminar esta fila?</p>
+          <p>¿Está seguro que desea realizar el otorgamiento?</p>
           <Grid display="flex" gap={2} justifyContent="right" mt={2}>
             <Button
               variant="contained"
@@ -35,7 +31,7 @@ const DeleteBoletas = ({ setKeyDataGrid, handleCloseDelM, dataDel }) => {
               className="buttom-login"
               type="submit"
               sx={{ mb: 2 }}
-              onClick={handleCloseDelM}
+              onClick={handleCloseOtorgM}
             >
               Cancelar
             </Button>
@@ -46,4 +42,4 @@ const DeleteBoletas = ({ setKeyDataGrid, handleCloseDelM, dataDel }) => {
   );
 };
 
-export default DeleteBoletas;
+export default ConfirmarOtorgamiento;

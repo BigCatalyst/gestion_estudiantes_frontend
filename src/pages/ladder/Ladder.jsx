@@ -10,6 +10,7 @@ import { FaFilePdf, FaSitemap } from "react-icons/fa";
 import ModalMUI from "../../components/mui/modal/Modal";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { dataGridStyles } from "../../components/mui/datagrid/DataGridStyle";
+import ConfirmarOtorgamiento from "./ConfirmarOtorgamiento";
 
 const Ladder = () => {
   const [data, setData] = useState();
@@ -112,9 +113,9 @@ const Ladder = () => {
             <ModalMUI
               open={openOtorgM}
               handleClose={handleCloseOtorgM}
-              title="Eliminar Usuario"
+              title="Confirmar Otorgamiento"
             >
-              <p>dsad</p>
+              <ConfirmarOtorgamiento handleCloseOtorgM={handleCloseOtorgM} />
             </ModalMUI>
           </Grid>
           <Grid xs={12}>

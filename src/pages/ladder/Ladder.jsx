@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import Page from "../../components/page/Page";
-import { getEscalafon } from "../../services/StudentsService";
+import {
+  getEscalafon,
+  reporte_escalafon,
+} from "../../services/StudentsService";
 import { Box, Button } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { FaFilePdf, FaSitemap } from "react-icons/fa";
@@ -26,11 +29,14 @@ const Ladder = () => {
       if (res) {
         const dataRequest = res.data;
         const dataT = dataRequest.map((item) => {
+          const prom = item.promedio + "";
+          const prom_dat = prom.length > 5 ? prom.substring(0, 5) : prom;
+
           count++;
           return {
             id: count,
             lugar: item.lugar,
-            promedio: item.promedio,
+            promedio: prom_dat,
             ci: item.estudiante.ci,
             name: item.estudiante.name,
             lastName: item.estudiante.lastName,
@@ -43,6 +49,10 @@ const Ladder = () => {
 
     getData();
   }, []);
+
+  const handleReporteEscalfonButtom = async () => {
+    await reporte_escalafon();
+  };
 
   const columns = [
     { field: "id", headerName: "ID", width: 150 },
@@ -94,7 +104,7 @@ const Ladder = () => {
             <Button
               variant="contained"
               startIcon={<FaFilePdf />}
-              //onClick={handleOpenAddM}
+              onClick={handleReporteEscalfonButtom}
             >
               Reporte
             </Button>

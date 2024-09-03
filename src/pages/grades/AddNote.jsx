@@ -5,11 +5,11 @@ import { Autocomplete, Button, Container, TextField } from "@mui/material";
 
 import { add } from "../../services/NotesServices";
 import { useEffect, useState } from "react";
-import { getAll,getAllByGrade } from "../../services/StudentsService";
+import { getAllByGrade } from "../../services/StudentsService";
 import { getAllByGrade as getAllAsignaturas } from "../../services/SubjectsService";
 import Alert from "../../components/mui/alert/Alert";
 
-const AddNote = ({ setKeyDataGrid, handleCloseAddM,grade }) => {
+const AddNote = ({ setKeyDataGrid, handleCloseAddM, grade }) => {
   const [students, setStudents] = useState();
   const [studentCi, setCI] = useState();
 
@@ -18,12 +18,16 @@ const AddNote = ({ setKeyDataGrid, handleCloseAddM,grade }) => {
 
   const [mapAsignaturas, setmapAsignaturas] = useState(new Map());
 
+  const [mapAsignaturasTcp2, setmapAsignaturasTcp2] = useState(new Map());
+
   const [showAlert, setShowAlert] = useState(false);
   const [keyAlert, setKeyAlert] = useState(Date.now());
 
+  const [enableTcp2, setEnableTcp2] = useState(false);
+
   useEffect(() => {
     const getData = async () => {
-      const res = await getAllByGrade(grade);//getAll();
+      const res = await getAllByGrade(grade); //getAll();
       if (res) {
         const stud = res.data.map((el) => {
           return el.ci;
@@ -34,13 +38,16 @@ const AddNote = ({ setKeyDataGrid, handleCloseAddM,grade }) => {
 
       const resS = await getAllAsignaturas(grade);
       const map = new Map();
+      const mapTcp2 = new Map();
       if (resS) {
         console.log(resS);
         const subj = resS.data.map((el) => {
           map.set(el.name, el.id);
+          mapTcp2.set(el.name, el.tcp2);
           return el.name;
         });
         setmapAsignaturas(map);
+        setmapAsignaturasTcp2(mapTcp2);
         setSubjects(subj);
         setSubjectID(subj[0]);
       }
@@ -120,6 +127,11 @@ const AddNote = ({ setKeyDataGrid, handleCloseAddM,grade }) => {
             options={subjects ? subjects : []}
             onChange={(event, newValue) => {
               setSubjectID(newValue);
+
+              if (mapAsignaturasTcp2.get(newValue)) {
+                setEnableTcp2(true);
+                formData.tcp2='';
+              } else setEnableTcp2(false);
             }}
             sx={{ width: "100%", mb: 2 }}
             renderInput={(params) => (
@@ -190,6 +202,7 @@ const AddNote = ({ setKeyDataGrid, handleCloseAddM,grade }) => {
             fullWidth
             label="Tcp2"
             required
+            disabled={!enableTcp2}
             sx={{ mb: 3 }}
             type="number"
           ></TextField>

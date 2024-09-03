@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import Page from "../../components/page/Page";
 import {
@@ -19,6 +20,7 @@ import { FaFilePdf } from "react-icons/fa";
 import dayjs from "dayjs";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { useNavigate } from "react-router-dom";
 
 const Item = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -61,12 +63,16 @@ const AltasBajas = () => {
   };
   const handleCloseDelM = () => setOpenDelM(false);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     //simulando el tiempo de respuesta de la api
     const getData = async () => {
       setLoading(true);
       let count = 0;
-      const res = await getAll();
+
+      try {
+        const res = await getAll();
       if (res) {
         const dataRequest = res.data;
         const dataT = dataRequest.map((item) => {
@@ -80,6 +86,13 @@ const AltasBajas = () => {
         setData(dataT);
         setLoading(false);
       }
+      } catch (error) {
+        if (error.status === 403 || error.status === 401) {
+          navigate("/logout", { replace: true });
+        }
+      }
+
+      
     };
     getData();
   }, [keyDataGrid]);

@@ -19,6 +19,8 @@ const SubirDeGradoEstudiante = ({
     useFormValidator({
       carrera: "",
       Nodematricula: 1,
+      notaescalafon:0,
+      noescalafon:0
     });
 
   const handdleSubmit = async (event) => {
@@ -80,6 +82,44 @@ const SubirDeGradoEstudiante = ({
             required
             sx={{ mb: 3 }}
           ></TextField>
+
+
+          <TextField
+            name="notaescalafon"
+            onChange={handdleChangeForm}
+            value={formData.notaescalafon}
+            error={
+              formError.notaescalafon || formData.notaescalafon > 30 || formData.notaescalafon < 0
+                ? true
+                : false
+            }
+            helperText={
+              formError.notaescalafon
+                ? formError.notaescalafon
+                : formData.notaescalafon > 100 || formData.notaescalafon < 0
+                ? "El promedio tiene que ser un numero menor o igual a 100"
+                : ""
+            }
+            fullWidth
+            label="Promedio"
+            required
+            sx={{ mb: 3 }}
+            type="number"
+          ></TextField>
+
+          <TextField
+            name="noescalafon"
+            onChange={handdleChangeForm}
+            value={formData.noescalafon}
+            error={formError.noescalafon ? true : false}
+            helperText={formError.noescalafon}
+            fullWidth
+            label="No. Escalafon"
+            required
+            sx={{ mb: 3 }}
+            type="number"
+          ></TextField>
+
 
           <Button
             variant="contained"

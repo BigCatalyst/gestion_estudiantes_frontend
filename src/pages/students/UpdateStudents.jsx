@@ -17,7 +17,7 @@ const UpdateStudents = ({ setKeyDataGrid, handleCloseUpdM, dataEdit }) => {
       ci: dataEdit.ci,
       address: dataEdit.address,
       grade: dataEdit.grade,
-      lastName: dataEdit.last_name,
+      lastName: dataEdit.lastName,
       name: dataEdit.name,
       regNumber: dataEdit.regNumber,
       sex: dataEdit.sex,

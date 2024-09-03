@@ -1,9 +1,39 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 import useFormValidator from "../../validators/FormValidator";
 import { Button, Container, TextField } from "@mui/material";
 
 import { update } from "../../services/NotesServices";
+import { useState } from "react";
+import { useEffect } from "react";
+import { findid } from "../../services/SubjectsService";
+
+
+
 const UpdateNote = ({ setKeyDataGrid, handleCloseUpdM, dataEdit }) => {
+  
+const [disabletcp2, setDisabletcp2] = useState(false)
+
+  useEffect(() => {
+    const request = async()=>{
+      try {
+        const res = await findid(dataEdit.id_asignatura);
+
+console.log(res.data.tcp2 === null ,res.data.tcp2 === false)
+        if(res && (res.data.tcp2 === null || res.data.tcp2 === false) ) setDisabletcp2(true)
+      } catch (error) {
+    console.log(error)
+        setDisabletcp2(false)
+      }
+    }
+
+    request()
+  
+   
+  }, [])
+  
+  
+  
   const { formData, formError, handdleChangeForm } = useFormValidator({
     //  studentCi: dataEdit.studentCi,
     //  subjectId: dataEdit.subjectId,
@@ -127,6 +157,7 @@ const UpdateNote = ({ setKeyDataGrid, handleCloseUpdM, dataEdit }) => {
             required
             sx={{ mb: 3 }}
             type="number"
+            disabled={disabletcp2}
           ></TextField>
           <TextField
             name="finalExam"

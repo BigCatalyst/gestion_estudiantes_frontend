@@ -202,7 +202,7 @@ const AddNote = ({ setKeyDataGrid, handleCloseAddM, grade }) => {
             fullWidth
             label="Tcp2"
             required
-            disabled={enableTcp2}
+            disabled={!enableTcp2}
             sx={{ mb: 3 }}
             type="number"
           ></TextField>

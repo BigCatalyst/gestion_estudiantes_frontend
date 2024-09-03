@@ -62,11 +62,11 @@ const Graduate = () => {
       headerName: "Address",
       width: 150,
     },
-    {
-      field: "grade",
-      headerName: "Grado",
-      width: 150,
-    },
+    // {
+    //   field: "grade",
+    //   headerName: "Grado",
+    //   width: 150,
+    // },
     {
       field: "apellidos",
       headerName: "Apellidos",

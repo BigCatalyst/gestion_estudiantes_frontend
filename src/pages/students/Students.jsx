@@ -19,6 +19,7 @@ import { FaFilePdf, FaSortAmountUpAlt } from "react-icons/fa";
 import SubirDeGradoEstudiante from "./SubirDeGradoEstudiante";
 import { FaArrowUp91 } from "react-icons/fa6";
 import ReporteAsignatura from "./ReporteAsignatura";
+import SubirDeGradoEstudiante7y8 from "./SubirDeGradoEstudiante7y8";
 const Students = () => {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
@@ -67,6 +68,16 @@ const Students = () => {
   };
   const handleCloseDelMReporteAsignatura = () => setOpenMReporteAsignatura(false);
 
+
+   //Modal Subir de Grado
+   const [openMSubirDeGrado7y8, setOpenMSubirDeGrado7y8] = useState(false);
+   const [dataSubirDeGrado7y8, setDataSubirDeGrado7y8] = useState();
+   const handleOpenDelMSubirDeGrado7y8 = (row) => {
+     setOpenMSubirDeGrado7y8(true);
+     setDataSubirDeGrado7y8(row);
+   };
+   const handleCloseDelMSubirDeGrado7y8 = () => setOpenMSubirDeGrado7y8(false);
+ 
 
   useEffect(() => {
     //simulando el tiempo de respuesta de la api
@@ -118,7 +129,7 @@ const Students = () => {
         </IconButton>
         <IconButton
           aria-label="Subir de grado"
-          onClick={() => handleOpenDelMSubirGrado(params.row)}
+          onClick={() => params.row.grade==9?handleOpenDelMSubirGrado(params.row):handleOpenDelMSubirDeGrado7y8(params.row)}
         >
           <FaArrowUp91 />
         </IconButton>
@@ -254,6 +265,18 @@ const Students = () => {
                 setKeyDataGrid={setKeyDataGrid}
                 handleCloseDelM={handleCloseDelMSubirGrado}
                 data_entrada={dataSubirGrado}
+              />
+            </ModalMUI>
+
+            <ModalMUI
+              open={openMSubirDeGrado7y8}
+              handleClose={handleCloseDelMSubirDeGrado7y8}
+              title="Subir de grado"
+            >
+              <SubirDeGradoEstudiante7y8
+                setKeyDataGrid={setKeyDataGrid}
+                handleCloseDelM={handleCloseDelMSubirDeGrado7y8}
+                data={dataSubirDeGrado7y8}
               />
             </ModalMUI>
 

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState } from "react";
 import Page from "../../components/page/Page";
 import { useEffect } from "react";
@@ -8,29 +9,38 @@ import { dataGridStyles } from "../../components/mui/datagrid/DataGridStyle";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { FaFilePdf } from "react-icons/fa";
 import { reporte } from "../../services/GraduateService";
+import { useNavigate } from "react-router-dom";
 const Graduate = () => {
   //const [request, setRequest] = useState(0);
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
   const [keyDataGrid, setKeyDataGrid] = useState(Date.now());
 
-  
+  const navigate = useNavigate();
 
   useEffect(() => {
     //simulando el tiempo de respuesta de la api
     const getData = async () => {
       setLoading(true);
       let count = 0;
-      const res = await getAll();
-      if (res) {
-        const dataRequest = res.data;
-        const dataT = dataRequest.map((item) => {
-          count++;
-          return { ...item, id: count };
-        });
-        setData(dataT);
-        setLoading(false);
+
+      try {
+        const res = await getAll();
+        if (res) {
+          const dataRequest = res.data;
+          const dataT = dataRequest.map((item) => {
+            count++;
+            return { ...item, id: count };
+          });
+          setData(dataT);
+          setLoading(false);
+        }
+      } catch (error) {
+        if (error.status === 403 || error.status === 401) {
+          navigate("/logout", { replace: true });
+        }
       }
+     
     };
 
     getData();

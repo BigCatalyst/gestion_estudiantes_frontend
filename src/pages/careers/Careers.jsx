@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import Page from "../../components/page/Page";
 import { getAll } from "../../services/CareersServices";
@@ -11,6 +12,7 @@ import UpdateCareers from "./UpdateCareers";
 import DeleteCareers from "./DeleteCareers";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { dataGridStyles } from "../../components/mui/datagrid/DataGridStyle";
+import { useNavigate } from "react-router-dom";
 
 const Careers = () => {
   const [data, setData] = useState();
@@ -41,16 +43,27 @@ const Careers = () => {
   };
   const handleCloseDelM = () => setOpenDelM(false);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     //simulando el tiempo de respuesta de la api
     const getData = async () => {
       setLoading(true);
-      const res = await getAll();
+
+      try {
+        const res = await getAll();
       if (res) {
         const dataRequest = res.data;
         setData(dataRequest);
         setLoading(false);
       }
+      } catch (error) {
+        if (error.status === 403 || error.status === 401) {
+          navigate("/logout", { replace: true });
+        }
+      }
+
+      
     };
 
     getData();

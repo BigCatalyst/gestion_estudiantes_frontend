@@ -12,6 +12,7 @@ import { BsPersonFillAdd } from "react-icons/bs";
 import DeleteNote from "./DeleteNote";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { dataGridStyles } from "../../components/mui/datagrid/DataGridStyle";
+import { useNavigate } from "react-router-dom";
 
 const Notes = ({ grade }) => {
   const [data, setData] = useState();
@@ -42,13 +43,17 @@ const Notes = ({ grade }) => {
   };
   const handleCloseDelM = () => setOpenDelM(false);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     //simulando el tiempo de respuesta de la api
     const getData = async () => {
       setLoading(true);
       let count = 0;
       let res;
-      const notes = await getAll(grade);
+
+      try {
+        const notes = await getAll(grade);
       if (notes) {
         res = notes.data.map((item) => {
           count++;
@@ -58,6 +63,13 @@ const Notes = ({ grade }) => {
         setData(res);
         setLoading(false);
       }
+      } catch (error) {
+        if (error.status === 403 || error.status === 401) {
+          navigate("/logout", { replace: true });
+        }
+      }
+
+      
     };
 
     getData();

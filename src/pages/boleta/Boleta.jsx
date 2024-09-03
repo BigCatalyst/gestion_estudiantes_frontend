@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import Page from "../../components/page/Page";
 import { getAllBoleta, reporte } from "../../services/EstudianteCarreraService";
@@ -13,6 +14,7 @@ import { dataGridStyles } from "../../components/mui/datagrid/DataGridStyle";
 import { FaFilePdf } from "react-icons/fa";
 import UpdateBoletas from "./UpdateBoletas";
 import DeleteBoletas from "./DeleteBoletas";
+import { useNavigate } from "react-router-dom";
 
 const Boleta = () => {
   const [data, setData] = useState();
@@ -42,24 +44,35 @@ const Boleta = () => {
   };
   const handleCloseDelM = () => setOpenDelM(false);
 
+
+  const navigate = useNavigate();
+
   useEffect(() => {
     //simulando el tiempo de respuesta de la api
     const getData = async () => {
       setLoading(true);
       let count = 0;
 
-      const res = await getAllBoleta();
+      try {
+        const res = await getAllBoleta();
 
-      if (res) {
-        const dataRequest = res.data;
-        const dataT = dataRequest.map((item) => {
-          count++;
-
-          return { ...item, id: count };
-        });
-        setData(dataT);
-        setLoading(false);
+        if (res) {
+          const dataRequest = res.data;
+          const dataT = dataRequest.map((item) => {
+            count++;
+  
+            return { ...item, id: count };
+          });
+          setData(dataT);
+          setLoading(false);
+        }
+      } catch (error) {
+        if (error.status === 403 || error.status === 401) {
+          navigate("/logout", { replace: true });
+        }
       }
+
+     
     };
     getData();
   }, [keyDataGrid]);

@@ -5,7 +5,7 @@ import { Autocomplete, Button, Container, TextField } from "@mui/material";
 
 import { add } from "../../services/NotesServices";
 import { useEffect, useState } from "react";
-import { getAll, getAllByGrade } from "../../services/StudentsService";
+import { getAllByGrade } from "../../services/StudentsService";
 import { getAllByGrade as getAllAsignaturas } from "../../services/SubjectsService";
 import Alert from "../../components/mui/alert/Alert";
 
@@ -18,8 +18,12 @@ const AddNote = ({ setKeyDataGrid, handleCloseAddM, grade }) => {
 
   const [mapAsignaturas, setmapAsignaturas] = useState(new Map());
 
+  const [mapAsignaturasTcp2, setmapAsignaturasTcp2] = useState(new Map());
+
   const [showAlert, setShowAlert] = useState(false);
   const [keyAlert, setKeyAlert] = useState(Date.now());
+
+  const [enableTcp2, setEnableTcp2] = useState(false);
 
   useEffect(() => {
     const getData = async () => {
@@ -34,13 +38,16 @@ const AddNote = ({ setKeyDataGrid, handleCloseAddM, grade }) => {
 
       const resS = await getAllAsignaturas(grade);
       const map = new Map();
+      const mapTcp2 = new Map();
       if (resS) {
         console.log(resS);
         const subj = resS.data.map((el) => {
           map.set(el.name, el.id);
+          mapTcp2.set(el.name, el.tcp2);
           return el.name;
         });
         setmapAsignaturas(map);
+        setmapAsignaturasTcp2(mapTcp2);
         setSubjects(subj);
         setSubjectID(subj[0]);
       }
@@ -120,6 +127,11 @@ const AddNote = ({ setKeyDataGrid, handleCloseAddM, grade }) => {
             options={subjects ? subjects : []}
             onChange={(event, newValue) => {
               setSubjectID(newValue);
+
+              if (mapAsignaturasTcp2.get(newValue)) {
+                setEnableTcp2(true);
+                formData.tcp2='';
+              } else setEnableTcp2(false);
             }}
             sx={{ width: "100%", mb: 2 }}
             renderInput={(params) => (
@@ -175,21 +187,22 @@ const AddNote = ({ setKeyDataGrid, handleCloseAddM, grade }) => {
             name="tcp2"
             onChange={handdleChangeForm}
             value={formData.tcp2}
-            // error={
-            //   formError.tcp2 || formData.tcp2 > 30 || formData.tcp2 < 0
-            //     ? true
-            //     : false
-            // }
-            // helperText={
-            //   formError.tcp2
-            //     ? formError.tcp2
-            //     : formData.tcp2 > 30 || formData.tcp2 < 0
-            //     ? "El campo Acs debe ser mayor que cero y menor que 30"
-            //     : ""
-            // }
+            error={
+              formError.tcp2 || formData.tcp2 > 30 || formData.tcp2 < 0
+                ? true
+                : false
+            }
+            helperText={
+              formError.tcp2
+                ? formError.tcp2
+                : formData.tcp2 > 30 || formData.tcp2 < 0
+                ? "El campo Acs debe ser mayor que cero y menor que 30"
+                : ""
+            }
             fullWidth
             label="Tcp2"
-            // required
+            required
+            disabled={enableTcp2}
             sx={{ mb: 3 }}
             type="number"
           ></TextField>

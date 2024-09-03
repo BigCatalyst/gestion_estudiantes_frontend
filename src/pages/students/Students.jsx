@@ -18,6 +18,9 @@ import { dataGridStyles } from "../../components/mui/datagrid/DataGridStyle";
 import { FaFilePdf, FaSortAmountUpAlt } from "react-icons/fa";
 import SubirDeGradoEstudiante from "./SubirDeGradoEstudiante";
 import { FaArrowUp91 } from "react-icons/fa6";
+import ReporteAsignatura from "./ReporteAsignatura";
+import SubirDeGradoEstudiante7y8 from "./SubirDeGradoEstudiante7y8";
+import SubirDeGradoAll from "./SubirDeGradoAll";
 const Students = () => {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
@@ -55,6 +58,45 @@ const Students = () => {
     setDataSubirGrado(row);
   };
   const handleCloseDelMSubirGrado = () => setOpenMSubirGrado(false);
+
+
+  //Modal Delete Confirn
+  const [openMReporteAsignatura, setOpenMReporteAsignatura] = useState(false);
+  const [dataReporteAsignatura, setDataReporteAsignatura] = useState();
+  const handleOpenDelMReporteAsignatura = (row) => {
+    setOpenMReporteAsignatura(true);
+    setDataReporteAsignatura(row);
+  };
+  const handleCloseDelMReporteAsignatura = () => setOpenMReporteAsignatura(false);
+
+
+   //Modal Subir de Grado
+   const [openMSubirDeGrado7y8, setOpenMSubirDeGrado7y8] = useState(false);
+   const [dataSubirDeGrado7y8, setDataSubirDeGrado7y8] = useState();
+  //  const [keySubirDeGrado7y8, setkeySubirDeGrado7y8] = useState(Date.now());
+   const handleOpenDelMSubirDeGrado7y8 = (row) => {
+     setOpenMSubirDeGrado7y8(true);
+     setDataSubirDeGrado7y8(row);
+   };
+   const handleCloseDelMSubirDeGrado7y8 = () => {
+    console.log("paso");
+    setOpenMSubirDeGrado7y8(false);
+  };
+ 
+
+  //Modal Subir de Grado All
+  const [openMSubirDeGradoAll, setOpenMSubirDeGradoAll] = useState(false);
+  const [dataSubirDeGradoAll, setDataSubirDeGradoAll] = useState();
+  const handleOpenDelMSubirDeGradoAll = (row) => {
+    setOpenMSubirDeGradoAll(true);
+    setDataSubirDeGradoAll(row);
+  };
+  const handleCloseDelMSubirDeGradoAll = () => {
+    console.log("aqui")
+    setOpenMSubirDeGradoAll(false);
+  }
+
+
 
   useEffect(() => {
     //simulando el tiempo de respuesta de la api
@@ -106,7 +148,7 @@ const Students = () => {
         </IconButton>
         <IconButton
           aria-label="Subir de grado"
-          onClick={() => handleOpenDelMSubirGrado(params.row)}
+          onClick={() => params.row.grade==9?handleOpenDelMSubirGrado(params.row):handleOpenDelMSubirDeGrado7y8(params.row)}
         >
           <FaArrowUp91 />
         </IconButton>
@@ -182,6 +224,13 @@ const Students = () => {
             <Button
               variant="contained"
               startIcon={<FaFilePdf />}
+              onClick={handleOpenDelMReporteAsignatura}
+            >
+              Reporte Asignatura
+            </Button>
+            <Button
+              variant="contained"
+              startIcon={<FaFilePdf />}
               onClick={handleReporteEscalfonButtom}
             >
               Escalafón
@@ -189,10 +238,20 @@ const Students = () => {
             <Button
               variant="contained"
               startIcon={<FaSortAmountUpAlt />}
-              // onClick={handleReporteEscalfonButtom}
+              onClick={handleOpenDelMSubirDeGradoAll}
             >
               Subir de Grado
             </Button>
+            <ModalMUI
+              open={openMSubirDeGradoAll}
+              handleClose={handleCloseDelMSubirDeGradoAll}
+              title="Subir de Grado"
+            >
+              <SubirDeGradoAll
+                setKeyDataGrid={setKeyDataGrid}
+                handleCloseDelM={handleCloseDelMSubirDeGradoAll}
+              />
+            </ModalMUI>
             <ModalMUI
               open={openAddM}
               handleClose={handleCloseAddM}
@@ -237,6 +296,31 @@ const Students = () => {
                 data_entrada={dataSubirGrado}
               />
             </ModalMUI>
+
+            <ModalMUI
+              open={openMSubirDeGrado7y8}
+              handleClose={handleCloseDelMSubirDeGrado7y8}
+              title="Subir de grado"
+            >
+              <SubirDeGradoEstudiante7y8
+                setKeyDataGrid={setKeyDataGrid}
+                handleCloseDelM={handleCloseDelMSubirDeGrado7y8}
+                data={dataSubirDeGrado7y8}
+              />
+            </ModalMUI>
+
+            <ModalMUI
+              open={openMReporteAsignatura}
+              handleClose={handleCloseDelMReporteAsignatura}
+              title="Reporte Asignatura"
+            >
+              <ReporteAsignatura
+                setKeyDataGrid={setKeyDataGrid}
+                handleCloseDelM={handleCloseDelMReporteAsignatura}
+                data_entrada={dataReporteAsignatura}
+              />
+            </ModalMUI>
+
           </Grid>
           <Grid xs={12}>
             <DataGrid

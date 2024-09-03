@@ -3,6 +3,7 @@ import axios from "axios";
 import { axiosCong } from "../config/env";
 
 export const getAll = async () => axios.get("/Subjects/findAll", axiosCong());
+export const getAllByGrade = async (grade) => axios.get(`/Subjects/findAll/${grade}`, axiosCong());
 
 export const findid = async (id) =>
   axios.get(`/Subjects/find/${id}`, axiosCong());

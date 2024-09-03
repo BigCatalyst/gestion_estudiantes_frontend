@@ -5,11 +5,11 @@ import { Autocomplete, Button, Container, TextField } from "@mui/material";
 
 import { add } from "../../services/NotesServices";
 import { useEffect, useState } from "react";
-import { getAll } from "../../services/StudentsService";
-import { getAll as getAllAsignaturas } from "../../services/SubjectsService";
+import { getAll,getAllByGrade } from "../../services/StudentsService";
+import { getAllByGrade as getAllAsignaturas } from "../../services/SubjectsService";
 import Alert from "../../components/mui/alert/Alert";
 
-const AddNote = ({ setKeyDataGrid, handleCloseAddM }) => {
+const AddNote = ({ setKeyDataGrid, handleCloseAddM,grade }) => {
   const [students, setStudents] = useState();
   const [studentCi, setCI] = useState();
 
@@ -23,7 +23,7 @@ const AddNote = ({ setKeyDataGrid, handleCloseAddM }) => {
 
   useEffect(() => {
     const getData = async () => {
-      const res = await getAll();
+      const res = await getAllByGrade(grade);//getAll();
       if (res) {
         const stud = res.data.map((el) => {
           return el.ci;
@@ -32,7 +32,7 @@ const AddNote = ({ setKeyDataGrid, handleCloseAddM }) => {
         setCI(stud[0]);
       }
 
-      const resS = await getAllAsignaturas();
+      const resS = await getAllAsignaturas(grade);
       const map = new Map();
       if (resS) {
         console.log(resS);

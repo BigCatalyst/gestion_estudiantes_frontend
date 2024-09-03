@@ -151,6 +151,7 @@ const Notes = ({ grade }) => {
             variant="contained"
             startIcon={<BsPersonFillAdd />}
             onClick={handleOpenAddM}
+            
           >
             Agregar
           </Button>
@@ -162,6 +163,7 @@ const Notes = ({ grade }) => {
             <AddNote
               setKeyDataGrid={setKeyDataGrid}
               handleCloseAddM={handleCloseAddM}
+              grade={grade}
             />
           </ModalMUI>
           <ModalMUI open={openUpdM} handleClose={handleCloseUpdM}>

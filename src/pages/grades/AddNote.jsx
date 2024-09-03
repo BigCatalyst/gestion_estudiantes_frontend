@@ -5,11 +5,11 @@ import { Autocomplete, Button, Container, TextField } from "@mui/material";
 
 import { add } from "../../services/NotesServices";
 import { useEffect, useState } from "react";
-import { getAll,getAllByGrade } from "../../services/StudentsService";
+import { getAll, getAllByGrade } from "../../services/StudentsService";
 import { getAllByGrade as getAllAsignaturas } from "../../services/SubjectsService";
 import Alert from "../../components/mui/alert/Alert";
 
-const AddNote = ({ setKeyDataGrid, handleCloseAddM,grade }) => {
+const AddNote = ({ setKeyDataGrid, handleCloseAddM, grade }) => {
   const [students, setStudents] = useState();
   const [studentCi, setCI] = useState();
 
@@ -23,7 +23,7 @@ const AddNote = ({ setKeyDataGrid, handleCloseAddM,grade }) => {
 
   useEffect(() => {
     const getData = async () => {
-      const res = await getAllByGrade(grade);//getAll();
+      const res = await getAllByGrade(grade); //getAll();
       if (res) {
         const stud = res.data.map((el) => {
           return el.ci;
@@ -175,21 +175,21 @@ const AddNote = ({ setKeyDataGrid, handleCloseAddM,grade }) => {
             name="tcp2"
             onChange={handdleChangeForm}
             value={formData.tcp2}
-            error={
-              formError.tcp2 || formData.tcp2 > 30 || formData.tcp2 < 0
-                ? true
-                : false
-            }
-            helperText={
-              formError.tcp2
-                ? formError.tcp2
-                : formData.tcp2 > 30 || formData.tcp2 < 0
-                ? "El campo Acs debe ser mayor que cero y menor que 30"
-                : ""
-            }
+            // error={
+            //   formError.tcp2 || formData.tcp2 > 30 || formData.tcp2 < 0
+            //     ? true
+            //     : false
+            // }
+            // helperText={
+            //   formError.tcp2
+            //     ? formError.tcp2
+            //     : formData.tcp2 > 30 || formData.tcp2 < 0
+            //     ? "El campo Acs debe ser mayor que cero y menor que 30"
+            //     : ""
+            // }
             fullWidth
             label="Tcp2"
-            required
+            // required
             sx={{ mb: 3 }}
             type="number"
           ></TextField>

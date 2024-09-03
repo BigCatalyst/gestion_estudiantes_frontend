@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import Page from "../../components/page/Page";
 import {
@@ -21,6 +22,7 @@ import { FaArrowUp91 } from "react-icons/fa6";
 import ReporteAsignatura from "./ReporteAsignatura";
 import SubirDeGradoEstudiante7y8 from "./SubirDeGradoEstudiante7y8";
 import SubirDeGradoAll from "./SubirDeGradoAll";
+import { useNavigate } from "react-router-dom";
 const Students = () => {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
@@ -59,7 +61,6 @@ const Students = () => {
   };
   const handleCloseDelMSubirGrado = () => setOpenMSubirGrado(false);
 
-
   //Modal Delete Confirn
   const [openMReporteAsignatura, setOpenMReporteAsignatura] = useState(false);
   const [dataReporteAsignatura, setDataReporteAsignatura] = useState();
@@ -67,22 +68,21 @@ const Students = () => {
     setOpenMReporteAsignatura(true);
     setDataReporteAsignatura(row);
   };
-  const handleCloseDelMReporteAsignatura = () => setOpenMReporteAsignatura(false);
+  const handleCloseDelMReporteAsignatura = () =>
+    setOpenMReporteAsignatura(false);
 
-
-   //Modal Subir de Grado
-   const [openMSubirDeGrado7y8, setOpenMSubirDeGrado7y8] = useState(false);
-   const [dataSubirDeGrado7y8, setDataSubirDeGrado7y8] = useState();
+  //Modal Subir de Grado
+  const [openMSubirDeGrado7y8, setOpenMSubirDeGrado7y8] = useState(false);
+  const [dataSubirDeGrado7y8, setDataSubirDeGrado7y8] = useState();
   //  const [keySubirDeGrado7y8, setkeySubirDeGrado7y8] = useState(Date.now());
-   const handleOpenDelMSubirDeGrado7y8 = (row) => {
-     setOpenMSubirDeGrado7y8(true);
-     setDataSubirDeGrado7y8(row);
-   };
-   const handleCloseDelMSubirDeGrado7y8 = () => {
+  const handleOpenDelMSubirDeGrado7y8 = (row) => {
+    setOpenMSubirDeGrado7y8(true);
+    setDataSubirDeGrado7y8(row);
+  };
+  const handleCloseDelMSubirDeGrado7y8 = () => {
     console.log("paso");
     setOpenMSubirDeGrado7y8(false);
   };
- 
 
   //Modal Subir de Grado All
   const [openMSubirDeGradoAll, setOpenMSubirDeGradoAll] = useState(false);
@@ -92,11 +92,11 @@ const Students = () => {
     setDataSubirDeGradoAll(row);
   };
   const handleCloseDelMSubirDeGradoAll = () => {
-    console.log("aqui")
+    console.log("aqui");
     setOpenMSubirDeGradoAll(false);
-  }
+  };
 
-
+  const navigate = useNavigate();
 
   useEffect(() => {
     //simulando el tiempo de respuesta de la api
@@ -104,17 +104,23 @@ const Students = () => {
       setLoading(true);
       let count = 0;
 
-      const res = await getAll();
+      try {
+        const res = await getAll();
 
-      if (res) {
-        const dataRequest = res.data;
-        const dataT = dataRequest.map((item) => {
-          count++;
+        if (res) {
+          const dataRequest = res.data;
+          const dataT = dataRequest.map((item) => {
+            count++;
 
-          return { ...item, id: count };
-        });
-        setData(dataT);
-        setLoading(false);
+            return { ...item, id: count };
+          });
+          setData(dataT);
+          setLoading(false);
+        }
+      } catch (error) {
+        if (error.status === 403) {
+          navigate("/logout", { replace: true });
+        }
       }
     };
     getData();
@@ -148,7 +154,11 @@ const Students = () => {
         </IconButton>
         <IconButton
           aria-label="Subir de grado"
-          onClick={() => params.row.grade==9?handleOpenDelMSubirGrado(params.row):handleOpenDelMSubirDeGrado7y8(params.row)}
+          onClick={() =>
+            params.row.grade == 9
+              ? handleOpenDelMSubirGrado(params.row)
+              : handleOpenDelMSubirDeGrado7y8(params.row)
+          }
         >
           <FaArrowUp91 />
         </IconButton>
@@ -320,7 +330,6 @@ const Students = () => {
                 data_entrada={dataReporteAsignatura}
               />
             </ModalMUI>
-
           </Grid>
           <Grid xs={12}>
             <DataGrid

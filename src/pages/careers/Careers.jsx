@@ -165,7 +165,7 @@ const Careers = () => {
               columns={columns}
               columnVisibilityModel={
                 {
-                  //id: false,
+                  id: false,
                 }
               }
               initialState={{

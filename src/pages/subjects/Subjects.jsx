@@ -157,7 +157,7 @@ const Subjects = () => {
               columns={columns}
               columnVisibilityModel={
                 {
-                  //id: false,
+                  id: false,
                 }
               }
               initialState={{
@@ -165,7 +165,7 @@ const Subjects = () => {
                 maxColumns: 6,
                 pagination: { paginationModel: { pageSize: 5 } },
                 sorting: {
-                  sortModel: [{ field: "id", sort: "desc" }],
+                  sortModel: [{ field: "grade", sort: "desc" }],
                 },
               }}
               pageSizeOptions={[5, 10, 25]}

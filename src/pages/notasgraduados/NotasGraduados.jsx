@@ -123,7 +123,7 @@ const NotasGraduados = () => {
               rows={data}
               columns={columns}
               columnVisibilityModel={{
-                //id: false,
+                id: false,
                 password: false,
               }}
               initialState={{
@@ -131,7 +131,7 @@ const NotasGraduados = () => {
                 maxColumns: 6,
                 pagination: { paginationModel: { pageSize: 5 } },
                 sorting: {
-                  sortModel: [{ field: "id", sort: "desc" }],
+                  sortModel: [{ field: "ci", sort: "desc" }],
                 },
               }}
               pageSizeOptions={[5, 10, 25]}

@@ -329,7 +329,7 @@ const Students = () => {
               columns={columns}
               columnVisibilityModel={
                 {
-                  //id: false,
+                  id: false,
                   //regNumber: false,
                 }
               }
@@ -338,7 +338,7 @@ const Students = () => {
                 maxColumns: 6,
                 pagination: { paginationModel: { pageSize: 5 } },
                 sorting: {
-                  sortModel: [{ field: "id", sort: "desc" }],
+                  sortModel: [{ field: "ci", sort: "desc" }],
                 },
               }}
               pageSizeOptions={[5, 10, 25]}

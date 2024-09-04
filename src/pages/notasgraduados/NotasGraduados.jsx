@@ -8,6 +8,7 @@ import { dataGridStyles } from "../../components/mui/datagrid/DataGridStyle";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { FaFilePdf } from "react-icons/fa";
 import { reporte } from "../../services/NotagraduadoService";
+import { useNavigate } from "react-router-dom";
 
 const NotasGraduados = () => {
   //const [request, setRequest] = useState(0);
@@ -15,14 +16,15 @@ const NotasGraduados = () => {
   const [loading, setLoading] = useState(true);
   const [keyDataGrid, setKeyDataGrid] = useState(Date.now());
 
-  
+  const navigate = useNavigate();
 
   useEffect(() => {
     //simulando el tiempo de respuesta de la api
     const getData = async () => {
       setLoading(true);
       let count = 0;
-      const res = await getAll();
+      try {
+        const res = await getAll();
       if (res) {
         const dataRequest = res.data;
         const dataT = dataRequest.map((item) => {
@@ -32,6 +34,12 @@ const NotasGraduados = () => {
         setData(dataT);
         setLoading(false);
       }
+      } catch (error) {
+        if (error.status === 403 || error.status === 401) {
+          navigate("/logout", { replace: true });
+        }
+      }
+      
     };
 
     getData();

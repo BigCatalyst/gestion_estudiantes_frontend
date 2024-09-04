@@ -12,6 +12,7 @@ import AddUser from "./AddUser";
 import UpdateUser from "./UpdateUser";
 import DeleteUser from "./DeleteUser";
 import { FaFilePdf } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const Users = () => {
   //const [request, setRequest] = useState(0);
@@ -43,12 +44,16 @@ const Users = () => {
   };
   const handleCloseDelM = () => setOpenDelM(false);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     //simulando el tiempo de respuesta de la api
     const getData = async () => {
       setLoading(true);
       let count = 0;
-      const res = await getAll();
+
+      try {
+        const res = await getAll();
       if (res) {
         const dataRequest = res.data;
         const dataT = dataRequest.map((item) => {
@@ -58,6 +63,12 @@ const Users = () => {
         setData(dataT);
         setLoading(false);
       }
+      } catch (error) {
+        if (error.status === 403 || error.status === 401) {
+          navigate("/logout", { replace: true });
+        }
+      }
+      
     };
 
     getData();

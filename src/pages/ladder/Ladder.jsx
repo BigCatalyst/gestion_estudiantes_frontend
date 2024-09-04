@@ -11,6 +11,7 @@ import ModalMUI from "../../components/mui/modal/Modal";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { dataGridStyles } from "../../components/mui/datagrid/DataGridStyle";
 import ConfirmarOtorgamiento from "./ConfirmarOtorgamiento";
+import { useNavigate } from "react-router-dom";
 
 const Ladder = () => {
   const [data, setData] = useState();
@@ -21,12 +22,15 @@ const Ladder = () => {
   const handleOpenOtorgM = () => setOpenOtorgM(true);
   const handleCloseOtorgM = () => setOpenOtorgM(false);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     //simulando el tiempo de respuesta de la api
     const getData = async () => {
       setLoading(true);
       let count = 0;
-      const res = await getEscalafon();
+      try {
+        const res = await getEscalafon();
       if (res) {
         const dataRequest = res.data;
         const dataT = dataRequest.map((item) => {
@@ -46,6 +50,12 @@ const Ladder = () => {
         setData(dataT);
         setLoading(false);
       }
+      } catch (error) {
+        if (error.status === 403 || error.status === 401) {
+          navigate("/logout", { replace: true });
+        }
+      }
+      
     };
 
     getData();
